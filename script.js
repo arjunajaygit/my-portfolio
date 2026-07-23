@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 350);
     }
 
-    // Rotate title every 5.0 seconds (comfortable reading gap)
-    setInterval(rotateRoleTitle, 5000);
+    // Rotate title every 3.5 seconds
+    setInterval(rotateRoleTitle, 3500);
 
     // 3. SCROLL PROGRESS BAR & PARALLAX HERO SCROLL EFFECT
     const progressBar = document.getElementById('scroll-progress');
