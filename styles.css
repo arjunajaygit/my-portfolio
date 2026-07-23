@@ -844,6 +844,8 @@ body.cursor-hover #cursor-dot {
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.02);
     border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .ide-dots {
@@ -863,6 +865,7 @@ body.cursor-hover #cursor-dot {
 .ide-tabs {
     display: flex;
     gap: 4px;
+    flex-wrap: wrap;
 }
 
 .ide-tab {
@@ -901,6 +904,8 @@ body.cursor-hover #cursor-dot {
 .ide-content {
     color: var(--text-secondary);
     padding-right: 28px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .code-key { color: #a1a1aa; font-weight: 600; }
@@ -1612,5 +1617,20 @@ body.cursor-hover #cursor-dot {
     
     .stat-card {
         min-width: 100%;
+    }
+    
+    .ide-body {
+        font-size: 13px;
+        min-height: 200px;
+        padding: 16px 0;
+    }
+    
+    .ide-content {
+        padding: 0 12px;
+    }
+    
+    .ide-tab {
+        padding: 4px 10px;
+        font-size: 11px;
     }
 }
