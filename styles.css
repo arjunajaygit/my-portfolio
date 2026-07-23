@@ -865,7 +865,13 @@ body.cursor-hover #cursor-dot {
 .ide-tabs {
     display: flex;
     gap: 4px;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.ide-tabs::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .ide-tab {
@@ -877,6 +883,8 @@ body.cursor-hover #cursor-dot {
     transition: var(--transition);
     background: transparent;
     border: none;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .ide-tab.active, .ide-tab:hover {
