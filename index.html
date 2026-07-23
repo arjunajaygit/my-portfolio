@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arjun A — Full-Stack & Applied AI Engineer</title>
-    <meta name="description" content="Portfolio of Arjun A — Full-Stack Engineer specializing in DevSecOps automation, multi-agent AI architectures, and applied machine learning.">
+    <title>Arjun A — Software Engineer</title>
+    <meta name="description" content="Portfolio of Arjun A — Software Engineer specializing in full-stack engineering, DevSecOps automation, and applied machine learning.">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
@@ -14,475 +14,433 @@
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
 
+    <!-- CORNER BRAND LOGO WITH PIXEL AVATAR -->
+    <a href="#home" class="brand-corner-logo" title="Arjun A">
+        <img src="assets/pixel-avatar.png" alt="Arjun A Pixel Logo" class="pixel-logo-img">
+        <span class="brand-name">ARJUN.A</span>
+        <span class="brand-status-dot"></span>
+    </a>
+
     <!-- TOP NAVIGATION BAR -->
     <nav class="topnav">
         <a href="#home" class="nav-item active" title="Home">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             <span>Home</span>
         </a>
         <a href="#about" class="nav-item" title="About">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <span>About</span>
         </a>
         <a href="#experience" class="nav-item" title="Experience">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             <span>Experience</span>
         </a>
         <a href="#projects" class="nav-item" title="Projects">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
             <span>Projects</span>
         </a>
         <a href="#tech" class="nav-item" title="Tech Stack">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
             <span>Tech Stack</span>
         </a>
         <a href="#contact" class="nav-item" title="Contact">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <span>Contact</span>
         </a>
     </nav>
 
-    <div class="page-layout">
+    <!-- PAGE CONTAINER -->
+    <div class="page-container">
 
-        <!-- STICKY SIDEBAR -->
-        <aside class="sticky-sidebar">
-            <div class="profile-card">
-                <div class="pixel-avatar-wrapper">
-                    <img src="assets/pixel-avatar.png" alt="Arjun A Pixel Avatar">
+        <!-- HERO SECTION -->
+        <section id="home" class="section-hero reveal">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-content">
+                
+                <div class="hero-meta-bar">
+                    <span class="hero-location-badge">📍 Kochi, Kerala, IN</span>
+                    <span class="hero-location-badge">🎓 CUSAT B.Tech IT & IIT Madras BS DS</span>
                 </div>
 
-                <h1 class="profile-name">Arjun A</h1>
-                <p class="profile-title">Full-Stack & Applied AI Engineer</p>
-
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span>Building SentinelOps</span>
+                <div class="section-heading-wrapper">
+                    <div class="section-title-stacked">
+                        <span class="title-solid">SOFTWARE</span>
+                        <span class="title-ghost">ENGINEER</span>
+                    </div>
                 </div>
 
-                <div class="sidebar-socials">
-                    <a href="https://github.com/arjunajaygit" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <p class="hero-description">
+                    Building software systems at the intersection of full-stack web and mobile development, DevSecOps automation, and applied machine learning. Passionate about shipping clean, production-grade applications end-to-end.
+                </p>
+
+                <div class="hero-ctas">
+                    <a href="#projects" class="btn-primary">
+                        <span>Explore Projects</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </a>
+                    <a href="assets/Arjun_A_Resume.pdf" target="_blank" class="btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Download CV</span>
+                    </a>
+                    <a href="https://github.com/arjunajaygit" target="_blank" rel="noopener" class="btn-icon-only" title="GitHub">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
                     </a>
-                    <a href="https://linkedin.com/in/arjun-a-1b863a265/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                    <a href="https://linkedin.com/in/arjun-a-1b863a265/" target="_blank" rel="noopener" class="btn-icon-only" title="LinkedIn">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.7a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9z"/></svg>
                     </a>
-                    <a href="mailto:rjun.ajay@gmail.com" class="social-btn" title="Email">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </a>
                 </div>
-
-                <a href="assets/Arjun_A_Resume.pdf" target="_blank" class="resume-btn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    <span>Download CV</span>
-                </a>
             </div>
-        </aside>
+        </section>
 
-        <!-- SCROLLING MAIN CONTENT -->
-        <main class="scroll-content">
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section-block reveal">
+            <div class="section-tag">ABOUT ME</div>
+            <div class="section-heading-wrapper">
+                <div class="section-title-stacked">
+                    <span class="title-solid">WHOAMI</span>
+                    <span class="title-ghost">PROFILE</span>
+                </div>
+            </div>
 
-            <!-- HERO SECTION -->
-            <section id="home" class="section-hero reveal">
-                <canvas id="hero-canvas"></canvas>
-                <div class="hero-content">
-                    <div class="terminal-prompt">
-                        <span class="prompt-symbol">arjun@devbox:~$</span>
-                        <span class="typing-text"></span>
+            <div class="ide-container">
+                <div class="ide-header">
+                    <div class="ide-dots">
+                        <span class="ide-dot red"></span>
+                        <span class="ide-dot yellow"></span>
+                        <span class="ide-dot green"></span>
                     </div>
+                    <div class="ide-title">profile.yml</div>
+                    <div></div>
+                </div>
+                <div class="ide-body">
+                    <div class="ide-gutter">
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9
+                    </div>
+                    <div class="ide-content">
+                        <span class="code-key">name:</span> <span class="code-str">"Arjun A"</span><br>
+                        <span class="code-key">title:</span> <span class="code-str">"Software Engineer"</span><br>
+                        <span class="code-key">education:</span><br>
+                        &nbsp;&nbsp;- <span class="code-str">"B.Tech Information Technology @ CUSAT (CGPA: 8.95/10)"</span><br>
+                        &nbsp;&nbsp;- <span class="code-str">"BS Data Science & Applications @ IIT Madras"</span><br>
+                        <span class="code-key">focus:</span> <span class="code-arr">["Full-Stack Web & Mobile", "DevSecOps Automation", "Multi-Agent AI"]</span><br>
+                        <span class="code-key">location:</span> <span class="code-str">"Kochi, Kerala, India"</span><br>
+                        <span class="code-key">email:</span> <span class="code-str">"rjun.ajay@gmail.com"</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="section-heading-wrapper">
-                        <div class="section-title-stacked">
-                            <span class="title-solid">FULL-STACK</span>
-                            <span class="title-ghost">ENGINEER</span>
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="section-block reveal">
+            <div class="section-tag">WORK EXPERIENCE</div>
+            <div class="section-heading-wrapper">
+                <div class="section-title-stacked">
+                    <span class="title-solid">CAREER</span>
+                    <span class="title-ghost">TIMELINE</span>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">Software Engineer Intern</h3>
+                                <div class="company-name">Turqosoft Solutions Private Limited • Kochi, Kerala</div>
+                            </div>
+                            <span class="date-badge">May 2026 – Jun 2026</span>
                         </div>
+                        <ul class="timeline-bullets">
+                            <li>Gained comprehensive understanding of ERPNext workflows and business processes.</li>
+                            <li>Contributed to ERPNext Manufacturing Module features using Flutter, implementing Work Order, Job Card, Material Request, Material Transfer, and Stock Entry workflows.</li>
+                            <li>Integrated REST APIs with Frappe backend for real-time synchronization and collaborated with cross-functional teams for module testing and debugging.</li>
+                        </ul>
                     </div>
+                </div>
 
-                    <p class="hero-description">
-                        Building systems at the intersection of full-stack engineering, DevSecOps automation, and applied machine learning. Dedicated to shipping resilient software end-to-end.
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">Intern</h3>
+                                <div class="company-name">IHITS Technologies Pvt. Ltd. • Kochi, Kerala</div>
+                            </div>
+                            <span class="date-badge">Jun 2025 – Jul 2025</span>
+                        </div>
+                        <ul class="timeline-bullets">
+                            <li>Developed mobile application using Flutter and Firebase under senior mentorship.</li>
+                            <li>Implemented GetX for efficient state management, maintaining clean architecture and structured Git version control.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div>
+                                <h3 class="role-title">AI and Computational Thinking Intern</h3>
+                                <div class="company-name">MathWorks • Remote</div>
+                            </div>
+                            <span class="date-badge">Jun 2025</span>
+                        </div>
+                        <ul class="timeline-bullets">
+                            <li>Completed interactive training implementing computational models, signal processing, and real-time machine learning mini-projects using MATLAB and Simulink.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION (BENTO GRID) -->
+        <section id="projects" class="section-block reveal">
+            <div class="section-tag">FEATURED PROJECTS</div>
+            <div class="section-heading-wrapper">
+                <div class="section-title-stacked">
+                    <span class="title-solid">SELECTED</span>
+                    <span class="title-ghost">PROJECTS</span>
+                </div>
+            </div>
+
+            <div class="bento-grid">
+                <!-- SENTINELOPS -->
+                <div class="bento-card featured">
+                    <div class="bento-tag-row">
+                        <span class="project-category">DevSecOps & Multi-Agent AI</span>
+                        <a href="https://github.com/arjunajaygit/SentinelOps" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </a>
+                    </div>
+                    <h3 class="project-title">SentinelOps 🛡️</h3>
+                    <p class="project-desc">
+                        Event-driven DevSecOps platform that autonomously analyzes GitHub Pull Requests, proactively blocking vulnerable code from reaching production. Features a parallel multi-agent workflow using LangGraph (3x latency reduction), a hallucination-resistant RAG pipeline with ChromaDB, dynamic Blast Radius dependency mapping for 7+ languages, and custom ARG_MAX batching for 8 SAST/SCA scanners.
                     </p>
-
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="4" data-suffix="+">0</div>
-                            <div class="stat-label">Major Projects</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="8" data-suffix=".95">0</div>
-                            <div class="stat-label">CUSAT CGPA</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="2" data-suffix=" Degree/Cert">0</div>
-                            <div class="stat-label">CUSAT IT + IITM DS</div>
-                        </div>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">LangGraph</span>
+                        <span class="tech-tag">ChromaDB</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Semgrep</span>
                     </div>
+                </div>
 
-                    <div class="hero-ctas">
-                        <a href="#projects" class="btn-primary">
-                            <span>Explore Projects</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                        </a>
-                        <a href="#contact" class="btn-secondary">
-                            <span>Get In Touch</span>
+                <!-- PAYROLLPRO -->
+                <div class="bento-card">
+                    <div class="bento-tag-row">
+                        <span class="project-category">Full-Stack Web App</span>
+                        <a href="https://github.com/arjunajaygit/Payroll-Automation-" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
                         </a>
                     </div>
-                </div>
-            </section>
-
-            <!-- ABOUT SECTION -->
-            <section id="about" class="section-block reveal">
-                <div class="section-tag">01 // ABOUT ME</div>
-                <div class="section-heading-wrapper">
-                    <div class="section-title-stacked">
-                        <span class="title-solid">WHOAMI</span>
-                        <span class="title-ghost">PROFILE</span>
+                    <h3 class="project-title">PayrollPro 💰</h3>
+                    <p class="project-desc">
+                        Full-stack web application streamlining monthly payroll with bulk CSV uploads and automated encrypted PDF payslip generation (`pdfkit` + `nodemailer`). Built with PostgreSQL and Prisma ORM for real-time dispatch audits, secured by custom JWT authentication.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Prisma</span>
+                        <span class="tech-tag">JWT</span>
                     </div>
                 </div>
 
-                <div class="ide-container">
-                    <div class="ide-header">
-                        <div class="ide-dots">
-                            <span class="ide-dot red"></span>
-                            <span class="ide-dot yellow"></span>
-                            <span class="ide-dot green"></span>
-                        </div>
-                        <div class="ide-title">about_arjun.yml</div>
-                        <div></div>
+                <!-- CIMS -->
+                <div class="bento-card">
+                    <div class="bento-tag-row">
+                        <span class="project-category">Disaster Response Mobile App</span>
+                        <a href="https://github.com/ADVAITH-S-DEV/CIMS_project" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </a>
                     </div>
-                    <div class="ide-body">
-                        <div class="ide-gutter">
-                            1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11
-                        </div>
-                        <div class="ide-content">
-                            <span class="code-key">name:</span> <span class="code-str">"Arjun A"</span><br>
-                            <span class="code-key">role:</span> <span class="code-str">"Full-Stack Engineer / Applied ML & Data Science"</span><br>
-                            <span class="code-key">education:</span><br>
-                            &nbsp;&nbsp;- <span class="code-str">"B.Tech IT @ Cochin University of Science and Technology (CUSAT)"</span> <span class="code-arr">[CGPA: 8.95/10]</span><br>
-                            &nbsp;&nbsp;- <span class="code-str">"BS Data Science & Applications @ IIT Madras"</span><br>
-                            <span class="code-key">currently_building:</span> <span class="code-str">"SentinelOps — Autonomous AI Code-Review & DevSecOps Engine"</span><br>
-                            <span class="code-key">core_focus:</span> <span class="code-arr">["Multi-agent AI Architectures", "DevSecOps Automation", "Full-Stack Web & Mobile"]</span><br>
-                            <span class="code-key">location:</span> <span class="code-str">"Kochi, Kerala, IN"</span><br>
-                            <span class="code-key">contact:</span> <span class="code-str">"rjun.ajay@gmail.com"</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- EXPERIENCE SECTION -->
-            <section id="experience" class="section-block reveal">
-                <div class="section-tag">02 // WORK EXPERIENCE</div>
-                <div class="section-heading-wrapper">
-                    <div class="section-title-stacked">
-                        <span class="title-solid">CAREER</span>
-                        <span class="title-ghost">TIMELINE</span>
+                    <h3 class="project-title">CIMS 🚨</h3>
+                    <p class="project-desc">
+                        Cross-platform disaster response platform unifying donation intake and warehouse logistics with Firebase Auth RBAC. Features geospatial routing using the Haversine formula for automatic warehouse assignment and QR-based delivery verification.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Firestore</span>
+                        <span class="tech-tag">FCM</span>
+                        <span class="tech-tag">Haversine GIS</span>
                     </div>
                 </div>
 
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <h3 class="role-title">Software Engineer Intern</h3>
-                                    <div class="company-name">Turqosoft Solutions Private Limited • Kochi, Kerala</div>
-                                </div>
-                                <span class="date-badge">May 2026 – Jun 2026</span>
-                            </div>
-                            <ul class="timeline-bullets">
-                                <li>Gained comprehensive understanding of ERPNext manufacturing workflows and enterprise business processes.</li>
-                                <li>Contributed to ERPNext Manufacturing Module using Flutter: Work Order, Job Card, Material Request, Material Transfer, and Stock Entry workflows.</li>
-                                <li>Integrated REST APIs with Frappe backend for real-time data synchronization and collaborated with cross-functional teams for module testing.</li>
-                            </ul>
-                        </div>
+                <!-- QUICKDOC -->
+                <div class="bento-card featured">
+                    <div class="bento-tag-row">
+                        <span class="project-category">Healthcare Platform</span>
+                        <a href="https://github.com/arjunajaygit/Quickdoc" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </a>
                     </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <h3 class="role-title">Software Mobile Intern</h3>
-                                    <div class="company-name">IHITS Technologies Pvt. Ltd. • Kochi, Kerala</div>
-                                </div>
-                                <span class="date-badge">Jun 2025 – Jul 2025</span>
-                            </div>
-                            <ul class="timeline-bullets">
-                                <li>Developed mobile applications using Flutter and Firebase under senior software leadership.</li>
-                                <li>Implemented GetX for efficient state management, enforcing clean architecture and structured Git version control.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <h3 class="role-title">AI & Computational Thinking Intern</h3>
-                                    <div class="company-name">MathWorks • Remote</div>
-                                </div>
-                                <span class="date-badge">Jun 2025</span>
-                            </div>
-                            <ul class="timeline-bullets">
-                                <li>Completed intensive training implementing computational models, signal processing, and real-time machine learning projects using MATLAB & Simulink.</li>
-                                <li>Ranked 7th out of ~500 participants across the cohort.</li>
-                            </ul>
-                        </div>
+                    <h3 class="project-title">QuickDoc 🩺</h3>
+                    <p class="project-desc">
+                        Scalable multi-user healthcare platform for booking and managing medical appointments with custom dashboards for patients, doctors, and admins. Integrated Razorpay payment gateway for seamless online fee processing.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">MERN Stack</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Razorpay API</span>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- PROJECTS SECTION (BENTO GRID) -->
-            <section id="projects" class="section-block reveal">
-                <div class="section-tag">03 // FEATURED WORK</div>
-                <div class="section-heading-wrapper">
-                    <div class="section-title-stacked">
-                        <span class="title-solid">FEATURED</span>
-                        <span class="title-ghost">PROJECTS</span>
+        <!-- TECH STACK SECTION -->
+        <section id="tech" class="section-block reveal">
+            <div class="section-tag">TECHNICAL SKILLS</div>
+            <div class="section-heading-wrapper">
+                <div class="section-title-stacked">
+                    <span class="title-solid">SKILLS &</span>
+                    <span class="title-ghost">TOOLING</span>
+                </div>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-group">
+                    <div class="tech-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <span>Languages</span>
+                    </div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">C/C++</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Dart</span>
+                        <span class="tech-pill">SQL</span>
                     </div>
                 </div>
 
-                <div class="bento-grid">
-                    <!-- SENTINELOPS (FEATURED LARGE CARD) -->
-                    <div class="bento-card featured">
-                        <div class="bento-tag-row">
-                            <span class="project-category">AI / DevSecOps Engine</span>
-                            <a href="https://github.com/arjunajaygit/sentinelops" target="_blank" class="project-icon-link" title="View Source">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                            </a>
-                        </div>
-                        <h3 class="project-title">SentinelOps 🛡️</h3>
-                        <p class="project-desc">
-                            Event-driven DevSecOps engine that autonomously reviews GitHub PRs and blocks vulnerable code pre-merge. Architected a <b>parallel multi-agent workflow using LangGraph</b> executing 3 AI agents simultaneously (3x latency reduction). Includes a hallucination-resistant RAG pipeline with ChromaDB and dynamic Blast Radius mapping for 7+ languages.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">FastAPI</span>
-                            <span class="tech-tag">LangGraph</span>
-                            <span class="tech-tag">ChromaDB</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Semgrep</span>
-                            <span class="tech-tag">ARG_MAX Batching</span>
-                        </div>
+                <div class="tech-group">
+                    <div class="tech-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <span>Frameworks & Libraries</span>
                     </div>
-
-                    <!-- PAYROLLPRO -->
-                    <div class="bento-card">
-                        <div class="bento-tag-row">
-                            <span class="project-category">Full-Stack Web App</span>
-                            <a href="https://github.com/arjunajaygit/payrollpro" target="_blank" class="project-icon-link" title="View Source">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                            </a>
-                        </div>
-                        <h3 class="project-title">PayrollPro 💰</h3>
-                        <p class="project-desc">
-                            Full-stack payroll platform with bulk CSV ingestion, encrypted PDF payslip generation (`pdfkit` + `nodemailer`), Prisma/PostgreSQL backend for dispatch audits, and custom JWT auth.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Prisma</span>
-                            <span class="tech-tag">JWT</span>
-                        </div>
-                    </div>
-
-                    <!-- CIMS -->
-                    <div class="bento-card">
-                        <div class="bento-tag-row">
-                            <span class="project-category">Disaster Response Mobile App</span>
-                            <a href="https://github.com/arjunajaygit/cims" target="_blank" class="project-icon-link" title="View Source">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                            </a>
-                        </div>
-                        <h3 class="project-title">CIMS 🚨</h3>
-                        <p class="project-desc">
-                            Cross-platform disaster management platform unifying donation intake & warehouse logistics. Features Haversine geospatial routing for automated warehouse assignment and QR delivery verification.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Firestore</span>
-                            <span class="tech-tag">FCM</span>
-                            <span class="tech-tag">Haversine GIS</span>
-                        </div>
-                    </div>
-
-                    <!-- QUICKDOC -->
-                    <div class="bento-card featured">
-                        <div class="bento-tag-row">
-                            <span class="project-category">Healthcare Platform</span>
-                            <a href="https://github.com/arjunajaygit/quickdoc" target="_blank" class="project-icon-link" title="View Source">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                            </a>
-                        </div>
-                        <h3 class="project-title">QuickDoc 🩺</h3>
-                        <p class="project-desc">
-                            Multi-tenant healthcare appointment scheduling platform with dedicated dashboards for Patients, Doctors, and Admins. Integrated Razorpay payment gateway for seamless online fee processing.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="tech-tag">MERN Stack</span>
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Razorpay API</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TECH STACK SECTION -->
-            <section id="tech" class="section-block reveal">
-                <div class="section-tag">04 // TECH STACK</div>
-                <div class="section-heading-wrapper">
-                    <div class="section-title-stacked">
-                        <span class="title-solid">SKILLS &</span>
-                        <span class="title-ghost">TOOLING</span>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Flutter</span>
+                        <span class="tech-pill">React</span>
+                        <span class="tech-pill">Next.js</span>
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">Express.js</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">LangGraph</span>
+                        <span class="tech-pill">LangChain</span>
+                        <span class="tech-pill">GetX</span>
                     </div>
                 </div>
 
-                <div class="tech-grid">
-                    <div class="tech-group">
-                        <div class="tech-group-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                            <span>Languages</span>
-                        </div>
-                        <div class="tech-pills">
-                            <span class="tech-pill">Python</span>
-                            <span class="tech-pill">JavaScript</span>
-                            <span class="tech-pill">TypeScript</span>
-                            <span class="tech-pill">C/C++</span>
-                            <span class="tech-pill">Dart</span>
-                            <span class="tech-pill">SQL</span>
-                            <span class="tech-pill">Bash</span>
-                        </div>
+                <div class="tech-group">
+                    <div class="tech-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        <span>Databases</span>
                     </div>
-
-                    <div class="tech-group">
-                        <div class="tech-group-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                            <span>Frameworks & Libraries</span>
-                        </div>
-                        <div class="tech-pills">
-                            <span class="tech-pill">React</span>
-                            <span class="tech-pill">Next.js</span>
-                            <span class="tech-pill">Flutter</span>
-                            <span class="tech-pill">FastAPI</span>
-                            <span class="tech-pill">Node.js</span>
-                            <span class="tech-pill">Express.js</span>
-                            <span class="tech-pill">LangGraph</span>
-                            <span class="tech-pill">LangChain</span>
-                            <span class="tech-pill">GetX</span>
-                        </div>
-                    </div>
-
-                    <div class="tech-group">
-                        <div class="tech-group-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                            <span>Databases & AI Storage</span>
-                        </div>
-                        <div class="tech-pills">
-                            <span class="tech-pill">PostgreSQL</span>
-                            <span class="tech-pill">MySQL</span>
-                            <span class="tech-pill">MongoDB</span>
-                            <span class="tech-pill">Firebase</span>
-                            <span class="tech-pill">ChromaDB (Vector)</span>
-                            <span class="tech-pill">Prisma ORM</span>
-                        </div>
-                    </div>
-
-                    <div class="tech-group">
-                        <div class="tech-group-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                            <span>DevOps & Tools</span>
-                        </div>
-                        <div class="tech-pills">
-                            <span class="tech-pill">Git / GitHub</span>
-                            <span class="tech-pill">Docker</span>
-                            <span class="tech-pill">Semgrep</span>
-                            <span class="tech-pill">Checkov</span>
-                            <span class="tech-pill">MATLAB & Simulink</span>
-                            <span class="tech-pill">Vercel</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ACHIEVEMENTS SECTION (GIT LOG STYLE) -->
-            <section id="achievements" class="section-block reveal">
-                <div class="section-tag">05 // HONORS & CERTIFICATES</div>
-                <div class="section-heading-wrapper">
-                    <div class="section-title-stacked">
-                        <span class="title-solid">ACHIEVEMENTS</span>
-                        <span class="title-ghost">LOG</span>
+                    <div class="tech-pills">
+                        <span class="tech-pill">PostgreSQL</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">MongoDB</span>
+                        <span class="tech-pill">ChromaDB (Vector Store)</span>
                     </div>
                 </div>
 
-                <div class="git-log-container">
-                    <div class="git-entry">
-                        <div class="git-hash">commit silver_medal</div>
-                        <div>
-                            <div class="git-msg-title">🥈 Silver Medal (2nd Place) — Ideathon @ IIT Kharagpur (Composit'25)</div>
-                            <div class="git-msg-desc">Secured 2nd place among 60+ teams in a national-level innovation and problem-solving competition.</div>
-                        </div>
+                <div class="tech-group">
+                    <div class="tech-group-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        <span>Tools & Platforms</span>
                     </div>
-
-                    <div class="git-entry">
-                        <div class="git-hash">commit helsinki_5ects</div>
-                        <div>
-                            <div class="git-msg-title">📜 Certified in Full Stack Web Development — University of Helsinki (5 ECTS)</div>
-                            <div class="git-msg-desc">Completed rigorous coursework focusing on building modern web applications using React, Node.js, and REST APIs.</div>
-                        </div>
-                    </div>
-
-                    <div class="git-entry">
-                        <div class="git-hash">commit mathworks_rank7</div>
-                        <div>
-                            <div class="git-msg-title">📈 Rank 7th / ~500 — MathWorks MATLAB & Simulink Training</div>
-                            <div class="git-msg-desc">Recognized for top performance out of ~500 participants in computational modeling and ML training.</div>
-                        </div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Git/GitHub</span>
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">Firebase</span>
+                        <span class="tech-pill">MATLAB & Simulink</span>
+                        <span class="tech-pill">Semgrep</span>
+                        <span class="tech-pill">Checkov</span>
+                        <span class="tech-pill">Prisma ORM</span>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- CONTACT SECTION -->
-            <section id="contact" class="section-block reveal">
-                <div class="section-tag">06 // GET IN TOUCH</div>
-                <div class="section-heading-wrapper">
-                    <div class="section-title-stacked">
-                        <span class="title-solid">LET'S BUILD</span>
-                        <span class="title-ghost">TOGETHER</span>
+        <!-- ACHIEVEMENTS SECTION -->
+        <section id="achievements" class="section-block reveal">
+            <div class="section-tag">CERTIFICATES & ACHIEVEMENTS</div>
+            <div class="section-heading-wrapper">
+                <div class="section-title-stacked">
+                    <span class="title-solid">HONORS &</span>
+                    <span class="title-ghost">LOG</span>
+                </div>
+            </div>
+
+            <div class="git-log-container">
+                <div class="git-entry">
+                    <div class="git-hash">🥈 SILVER MEDAL</div>
+                    <div>
+                        <div class="git-msg-title">Ideathon — IIT Kharagpur (Composit'25)</div>
+                        <div class="git-msg-desc">Secured 2nd place among 60+ teams in a national-level innovation and problem-solving competition.</div>
                     </div>
                 </div>
 
-                <div class="contact-box">
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <label for="form-name">NAME</label>
-                            <input type="text" id="form-name" class="form-input" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="form-email">EMAIL</label>
-                            <input type="email" id="form-email" class="form-input" placeholder="your.email@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="form-message">MESSAGE</label>
-                            <textarea id="form-message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">
-                            <span>Send Message</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                        </button>
-                    </form>
+                <div class="git-entry">
+                    <div class="git-hash">📜 CERTIFIED</div>
+                    <div>
+                        <div class="git-msg-title">Full Stack Web Development — University of Helsinki (Full Stack Open - 5 ECTS)</div>
+                        <div class="git-msg-desc">Completed coursework focused on building modern web applications using React, Node.js, and REST APIs.</div>
+                    </div>
                 </div>
-            </section>
 
-            <!-- SITE FOOTER -->
-            <footer class="site-footer">
-                <p>Designed & Built by Arjun A • 2026</p>
-            </footer>
+                <div class="git-entry">
+                    <div class="git-hash">📈 RANK 7th</div>
+                    <div>
+                        <div class="git-msg-title">MATLAB & Simulink Training — MathWorks</div>
+                        <div class="git-msg-desc">Recognized for top performance out of ~500 participants in computational modeling and ML training.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        </main>
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section-block reveal">
+            <div class="section-tag">GET IN TOUCH</div>
+            <div class="section-heading-wrapper">
+                <div class="section-title-stacked">
+                    <span class="title-solid">LET'S BUILD</span>
+                    <span class="title-ghost">TOGETHER</span>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="form-name">NAME</label>
+                        <input type="text" id="form-name" class="form-input" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email">EMAIL</label>
+                        <input type="email" id="form-email" class="form-input" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message">MESSAGE</label>
+                        <textarea id="form-message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <span>Send Message</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SITE FOOTER -->
+        <footer class="site-footer">
+            <p>Designed & Built by Arjun A • Software Engineer</p>
+        </footer>
+
     </div>
 
     <script src="script.js"></script>

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. CUSTOM CURSOR
+    // 1. CUSTOM CURSOR SYSTEM
     const cursorDot = document.getElementById('cursor-dot');
     const cursorRing = document.getElementById('cursor-ring');
 
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderCursor();
 
-    // Cursor hover expansion
-    const interactiveElements = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .profile-card');
+    // Cursor hover expansion on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .brand-corner-logo, .tech-group');
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -52,50 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // 3. STAT COUNTERS ANIMATION
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const endVal = parseInt(target.getAttribute('data-count'), 10);
-                const suffix = target.getAttribute('data-suffix') || '';
-                let current = 0;
-                const duration = 1500;
-                const stepTime = Math.abs(Math.floor(duration / endVal));
-
-                const timer = setInterval(() => {
-                    current += 1;
-                    target.textContent = current + suffix;
-                    if (current >= endVal) {
-                        target.textContent = endVal + suffix;
-                        clearInterval(timer);
-                    }
-                }, stepTime);
-
-                observer.unobserve(target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
-
-    // 4. TERMINAL TYPING ANIMATION
-    const typingElement = document.querySelector('.typing-text');
-    if (typingElement) {
-        const textToType = "cat about_arjun.yml";
-        let index = 0;
-
-        function type() {
-            if (index < textToType.length) {
-                typingElement.textContent += textToType.charAt(index);
-                index++;
-                setTimeout(type, 80);
-            }
-        }
-        setTimeout(type, 500);
-    }
-
-    // 5. CANVAS NODE NETWORK (HERO BACKGROUND)
+    // 3. CANVAS NODE NETWORK (HERO BACKGROUND)
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -107,11 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
             height = canvas.height = canvas.parentElement.offsetHeight;
         });
 
-        const particles = Array.from({ length: 45 }, () => ({
+        const particles = Array.from({ length: 40 }, () => ({
             x: Math.random() * width,
             y: Math.random() * height,
-            vx: (Math.random() - 0.5) * 0.4,
-            vy: (Math.random() - 0.5) * 0.4,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
             radius: Math.random() * 1.5 + 1
         }));
 
@@ -127,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.18)';
                 ctx.fill();
 
                 for (let j = i + 1; j < particles.length; j++) {
@@ -138,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.08 * (1 - dist / 120)})`;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.07 * (1 - dist / 120)})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
@@ -150,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         drawCanvas();
     }
 
-    // 6. CONTACT FORM SUBMISSION
+    // 4. CONTACT FORM SUBMISSION
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -164,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. ACTIVE NAV LINK HIGHLIGHTING
+    // 5. ACTIVE NAV LINK HIGHLIGHTING
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
 
