@@ -1427,7 +1427,7 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 @media (max-width: 900px) {
     .page-container {
-        padding: 120px 20px 60px;
+        padding: 100px 20px 60px;
     }
 
     .brand-corner-logo {
@@ -1448,7 +1448,7 @@ body.cursor-hover #cursor-dot {
         display: none;
     }
 
-    .bento-grid {
+    .bento-grid, .project-grid, .tech-grid, .contact-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1463,5 +1463,154 @@ body.cursor-hover #cursor-dot {
 
     .git-hash {
         min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-name-heading {
+        font-size: clamp(42px, 10vw, 64px);
+    }
+    
+    .dynamic-title-box {
+        font-size: clamp(28px, 5vw, 42px);
+    }
+
+    .topnav {
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        width: calc(100% - 40px);
+        justify-content: space-around;
+        padding: 12px 20px;
+        border-radius: 999px;
+        background: rgba(20, 20, 20, 0.85);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+        border: 1px solid var(--border);
+    }
+
+    .cmd-k-pill {
+        display: none;
+    }
+
+    .brand-corner-logo {
+        padding: 8px 12px;
+    }
+    
+    .brand-name {
+        display: none;
+    }
+    
+    .brand-status-dot {
+        display: none;
+    }
+
+    .timeline::before {
+        left: 0;
+    }
+    
+    .timeline {
+        padding-left: 20px;
+    }
+    
+    .timeline-dot {
+        left: -20px;
+    }
+    
+    .timeline-card {
+        padding: 24px;
+    }
+    
+    .ide-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .ide-gutter {
+        display: none;
+    }
+    
+    .ide-content {
+        padding: 0 16px;
+    }
+    
+    .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    
+    .stat-card {
+        min-width: 120px;
+        padding: 14px 18px;
+    }
+    
+    .hero-stats-row {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 80px 16px 100px;
+    }
+
+    .hero-name-heading {
+        font-size: clamp(36px, 12vw, 48px);
+    }
+
+    .dynamic-title-box {
+        font-size: clamp(24px, 6vw, 32px);
+    }
+    
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-ctas {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero-ctas .btn-icon-only {
+        display: none;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .date-badge {
+        margin-top: 8px;
+    }
+
+    .project-title {
+        font-size: 20px;
+    }
+    
+    .bento-card {
+        padding: 20px;
+    }
+
+    .timeline-card {
+        padding: 20px;
+    }
+
+    .cmd-modal-box {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .stat-card {
+        min-width: 100%;
     }
 }
