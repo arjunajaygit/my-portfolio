@@ -1,19 +1,19 @@
 /* =============================================
-   PREMIUM GREYSCALE SOFTWARE ENGINEER PORTFOLIO
-   Inspired by modern minimalist engineering sites
+   PREMIUM MINIMALIST SOFTWARE ENGINEER PORTFOLIO
+   Inspired by MightyMon & modern developer sites
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
 
 :root {
-    --bg-main: #0a0a0c;
-    --bg-surface: #121216;
-    --bg-surface-hover: #181820;
-    --bg-glass: rgba(18, 18, 22, 0.75);
+    --bg-main: #090a0c;
+    --bg-surface: #111216;
+    --bg-surface-hover: #171820;
+    --bg-glass: rgba(17, 18, 22, 0.8);
     --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.22);
-    --border-accent: rgba(255, 255, 255, 0.4);
+    --border-hover: rgba(255, 255, 255, 0.2);
+    --border-accent: rgba(255, 255, 255, 0.35);
     
-    --text-primary: #f4f4f6;
+    --text-primary: #f8f9fa;
     --text-secondary: #a1a1aa;
     --text-tertiary: #71717a;
     --text-muted: #52525b;
@@ -48,8 +48,8 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
-        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
     background-size: 100% 100%, 36px 36px;
 }
 
@@ -109,8 +109,8 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 .brand-corner-logo {
     position: fixed;
-    top: 20px;
-    left: 28px;
+    top: 24px;
+    left: 32px;
     z-index: 1001;
     display: flex;
     align-items: center;
@@ -168,8 +168,8 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 .topnav {
     position: fixed;
-    top: 20px;
-    right: 28px;
+    top: 24px;
+    right: 32px;
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -211,16 +211,16 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   PAGE LAYOUT
+   PAGE LAYOUT & SPACING
    ============================================= */
 .page-container {
-    max-width: 1200px;
+    max-width: 1140px;
     margin: 0 auto;
-    padding: 130px 32px 80px;
+    padding: 160px 32px 100px;
 }
 
 .section-block {
-    margin-bottom: 120px;
+    margin-bottom: 140px;
 }
 
 /* SECTION TITLES */
@@ -231,52 +231,48 @@ body.cursor-hover #cursor-dot {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-tertiary);
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 12px;
-}
-
-.section-tag::before {
-    content: '//';
-    color: var(--text-secondary);
+    margin-bottom: 16px;
 }
 
 .section-heading-wrapper {
-    margin-bottom: 44px;
+    margin-bottom: 48px;
 }
 
 .section-title-stacked {
-    line-height: 0.88;
+    line-height: 0.9;
 }
 
 .title-solid {
     font-family: var(--font-display);
-    font-size: clamp(44px, 6.5vw, 80px);
+    font-size: clamp(40px, 6vw, 72px);
     font-weight: 900;
-    letter-spacing: -2.5px;
+    letter-spacing: -2px;
     color: var(--text-primary);
     display: block;
 }
 
 .title-ghost {
     font-family: var(--font-display);
-    font-size: clamp(44px, 6.5vw, 80px);
+    font-size: clamp(40px, 6vw, 72px);
     font-weight: 900;
-    letter-spacing: -2.5px;
+    letter-spacing: -2px;
     color: transparent;
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
     display: block;
 }
 
 /* =============================================
-   HERO SECTION & PROMINENT NAME DESIGN
+   HERO SECTION (MIGHTYMON INSPIRED SPACIOUS TYPOGRAPHY)
    ============================================= */
 .section-hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-bottom: 40px;
 }
 
 #hero-canvas {
@@ -290,11 +286,10 @@ body.cursor-hover #cursor-dot {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 950px;
+    max-width: 900px;
 }
 
-/* HERO NAME PRESENTATION */
-.hero-intro-label {
+.hero-tagline {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -303,49 +298,44 @@ body.cursor-hover #cursor-dot {
     color: var(--text-tertiary);
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 }
 
-.hero-intro-label::before {
-    content: '>';
-    color: var(--accent);
-    font-weight: 800;
+.hero-tagline::before {
+    content: '//';
+    color: var(--text-secondary);
+    font-weight: 700;
 }
 
-.hero-name-wrapper {
-    margin-bottom: 16px;
-    position: relative;
-    display: inline-block;
-}
-
-.hero-name-title {
+.hero-name {
     font-family: var(--font-display);
-    font-size: clamp(56px, 8.5vw, 108px);
+    font-size: clamp(54px, 8.5vw, 100px);
     font-weight: 900;
     letter-spacing: -3px;
-    line-height: 0.95;
-    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: var(--transition);
-    display: inline-block;
-}
-
-.hero-name-wrapper:hover .hero-name-title {
-    letter-spacing: -1px;
-    filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.3));
-}
-
-.hero-role-stacked {
+    line-height: 1.05;
+    color: var(--text-primary);
     margin-bottom: 28px;
-    line-height: 0.88;
+    transition: var(--transition);
+}
+
+.hero-name:hover {
+    letter-spacing: -1.5px;
+}
+
+.hero-subtitle {
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--text-secondary);
+    max-width: 720px;
+    line-height: 1.65;
+    font-weight: 400;
+    margin-bottom: 36px;
 }
 
 .hero-meta-bar {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 28px;
+    margin-bottom: 44px;
     flex-wrap: wrap;
 }
 
@@ -353,22 +343,19 @@ body.cursor-hover #cursor-dot {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 14px;
+    padding: 8px 16px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
     border-radius: 999px;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 12.5px;
     color: var(--text-secondary);
+    transition: var(--transition);
 }
 
-.hero-description {
-    font-size: 19px;
-    color: var(--text-secondary);
-    max-width: 680px;
-    margin: 0 0 40px;
-    line-height: 1.7;
-    font-weight: 400;
+.hero-location-badge:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .hero-ctas {
@@ -909,7 +896,7 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 @media (max-width: 900px) {
     .page-container {
-        padding: 100px 20px 60px;
+        padding: 120px 20px 60px;
     }
 
     .brand-corner-logo {
