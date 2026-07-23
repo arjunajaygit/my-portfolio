@@ -437,6 +437,20 @@ body.cursor-hover #cursor-dot {
     gap: 4px;
 }
 
+.cmd-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cmd-item-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+
 .cmd-option-item {
     display: flex;
     align-items: center;
@@ -447,11 +461,22 @@ body.cursor-hover #cursor-dot {
     font-family: var(--font-mono);
     font-size: 13px;
     transition: var(--transition);
+    border: 1px solid transparent;
 }
 
-.cmd-option-item:hover {
+.cmd-option-item.hidden {
+    display: none !important;
+}
+
+.cmd-option-item:hover, .cmd-option-item.selected {
     background: rgba(255, 255, 255, 0.08);
     color: var(--accent);
+    border-color: var(--border);
+}
+
+.cmd-option-item:hover .cmd-item-icon, .cmd-option-item.selected .cmd-item-icon {
+    color: var(--accent);
+    transform: scale(1.15);
 }
 
 .cmd-shortcut {
@@ -460,6 +485,19 @@ body.cursor-hover #cursor-dot {
     background: rgba(255, 255, 255, 0.04);
     padding: 2px 6px;
     border-radius: 4px;
+}
+
+.cmd-empty-state {
+    display: none;
+    padding: 24px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-tertiary);
+}
+
+.cmd-empty-state.visible {
+    display: block;
 }
 
 /* =============================================

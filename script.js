@@ -181,15 +181,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. COMMAND PALETTE MODAL CONTROLS (CMD + K)
+    // 4. COMMAND PALETTE MODAL CONTROLS (CMD + K) & REAL-TIME SEARCH FILTER
     const cmdTrigger = document.getElementById('cmd-trigger');
     const cmdModal = document.getElementById('cmd-modal');
     const cmdInput = document.getElementById('cmd-search-input');
+    const cmdOptionsList = document.getElementById('cmd-options-list');
+    const cmdEmptyState = document.getElementById('cmd-empty-state');
+    let selectedCmdIndex = 0;
+
+    function getVisibleCmdOptions() {
+        if (!cmdOptionsList) return [];
+        return Array.from(cmdOptionsList.querySelectorAll('.cmd-option-item:not(.hidden)'));
+    }
+
+    function updateSelectedCmdHighlight() {
+        const visibleOptions = getVisibleCmdOptions();
+        visibleOptions.forEach((opt, idx) => {
+            if (idx === selectedCmdIndex) {
+                opt.classList.add('selected');
+                opt.scrollIntoView({ block: 'nearest' });
+            } else {
+                opt.classList.remove('selected');
+            }
+        });
+    }
+
+    function filterCmdOptions(query) {
+        if (!cmdOptionsList) return;
+        const q = query.toLowerCase().trim();
+        const allItems = cmdOptionsList.querySelectorAll('.cmd-option-item');
+        let visibleCount = 0;
+
+        allItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            const keywords = item.getAttribute('data-keywords') || '';
+            if (q === '' || text.includes(q) || keywords.includes(q)) {
+                item.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+
+        if (cmdEmptyState) {
+            if (visibleCount === 0) {
+                cmdEmptyState.classList.add('visible');
+            } else {
+                cmdEmptyState.classList.remove('visible');
+            }
+        }
+
+        selectedCmdIndex = 0;
+        updateSelectedCmdHighlight();
+    }
 
     if (cmdTrigger && cmdModal) {
         cmdTrigger.addEventListener('click', () => {
             cmdModal.classList.add('open');
-            if (cmdInput) cmdInput.focus();
+            if (cmdInput) {
+                cmdInput.value = '';
+                filterCmdOptions('');
+                cmdInput.focus();
+            }
         });
 
         cmdModal.addEventListener('click', (e) => {
@@ -197,13 +250,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (cmdInput) {
+        cmdInput.addEventListener('input', (e) => {
+            filterCmdOptions(e.target.value);
+        });
+
+        cmdInput.addEventListener('keydown', (e) => {
+            const visibleOptions = getVisibleCmdOptions();
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (visibleOptions.length > 0) {
+                    selectedCmdIndex = (selectedCmdIndex + 1) % visibleOptions.length;
+                    updateSelectedCmdHighlight();
+                }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (visibleOptions.length > 0) {
+                    selectedCmdIndex = (selectedCmdIndex - 1 + visibleOptions.length) % visibleOptions.length;
+                    updateSelectedCmdHighlight();
+                }
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (visibleOptions.length > 0 && visibleOptions[selectedCmdIndex]) {
+                    const targetItem = visibleOptions[selectedCmdIndex];
+                    closeCmdModal();
+                    targetItem.click();
+                    if (targetItem.getAttribute('href')) {
+                        window.open(targetItem.getAttribute('href'), targetItem.getAttribute('target') || '_self');
+                    }
+                }
+            }
+        });
+    }
+
     window.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
             if (cmdModal) {
-                cmdModal.classList.toggle('open');
-                if (cmdModal.classList.contains('open') && cmdInput) {
-                    cmdInput.focus();
+                const isOpen = cmdModal.classList.contains('open');
+                if (isOpen) {
+                    closeCmdModal();
+                } else {
+                    cmdModal.classList.add('open');
+                    if (cmdInput) {
+                        cmdInput.value = '';
+                        filterCmdOptions('');
+                        cmdInput.focus();
+                    }
                 }
             }
         }
