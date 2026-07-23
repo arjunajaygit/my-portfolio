@@ -64,9 +64,10 @@ function closeCmdModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. CUSTOM CURSOR
+    // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
+    const spotlight = document.getElementById('bg-spotlight');
     let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
 
@@ -76,6 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (dot) {
             dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        }
+
+        if (spotlight) {
+            spotlight.style.setProperty('--spot-x', `${mouseX}px`);
+            spotlight.style.setProperty('--spot-y', `${mouseY}px`);
         }
     });
 

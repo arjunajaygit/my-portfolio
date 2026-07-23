@@ -1,16 +1,16 @@
 /* =============================================
    PREMIUM HIGH-READABILITY SOFTWARE ENGINEER PORTFOLIO
-   With Ultra-Modern UI, Animations & Scroll Transitions
+   With Ultra-Modern Ambient Aurora Background & Mesh
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
 
 :root {
-    --bg-main: #090a0c;
-    --bg-surface: #111216;
-    --bg-surface-hover: #171820;
-    --bg-glass: rgba(17, 18, 22, 0.85);
-    --border: rgba(255, 255, 255, 0.1);
-    --border-hover: rgba(255, 255, 255, 0.28);
+    --bg-main: #07080a;
+    --bg-surface: #0e0f14;
+    --bg-surface-hover: #14161d;
+    --bg-glass: rgba(14, 15, 20, 0.82);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.25);
     --border-accent: rgba(255, 255, 255, 0.45);
     
     --text-primary: #ffffff;
@@ -50,10 +50,91 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
+    background-color: var(--bg-main);
+}
+
+/* =============================================
+   ULTRA-PREMIUM AMBIENT BACKGROUND & MESH OVERLAY
+   ============================================= */
+
+/* 1. ANIMATED AMBIENT GLOW ORBS */
+.bg-glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    z-index: -3;
+    opacity: 0.7;
+    will-change: transform;
+}
+
+.orb-1 {
+    top: 5%;
+    left: 15%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(34, 197, 94, 0.04) 70%, transparent 100%);
+    animation: floatOrb1 22s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+    top: 45%;
+    right: 10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, rgba(56, 189, 248, 0.05) 70%, transparent 100%);
+    animation: floatOrb2 26s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+    bottom: 10%;
+    left: 20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.09) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
+    animation: floatOrb3 24s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(80px, 60px) scale(1.15); }
+}
+
+@keyframes floatOrb2 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-70px, -80px) scale(1.1); }
+}
+
+@keyframes floatOrb3 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, -50px) scale(1.2); }
+}
+
+/* 2. CRISP TECH MESH GRID OVERLAY WITH RADIAL FADE MASK */
+.bg-grid-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
-        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 100% 100%, 36px 36px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -2;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+}
+
+/* 3. INTERACTIVE CURSOR LIGHT SPOTLIGHT */
+.bg-cursor-spotlight {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(650px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255, 255, 255, 0.035), transparent 80%);
+    transition: background 0.05s linear;
 }
 
 /* TOP SCROLL PROGRESS BAR */
