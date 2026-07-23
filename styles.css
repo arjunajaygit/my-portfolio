@@ -339,7 +339,7 @@ body.cursor-hover #cursor-dot {
 }
 
 .section-block {
-    margin-bottom: 140px;
+    margin-bottom: 160px;
 }
 
 /* SECTION TITLES */
@@ -415,7 +415,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   HERO SECTION & METRIC COUNTERS
+   HERO SECTION & SPACED CTAS
    ============================================= */
 .section-hero {
     position: relative;
@@ -423,6 +423,8 @@ body.cursor-hover #cursor-dot {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 180px;
+    padding-bottom: 60px;
 }
 
 #hero-canvas {
@@ -565,7 +567,7 @@ body.cursor-hover #cursor-dot {
     font-size: 19px;
     color: var(--text-secondary);
     max-width: 720px;
-    margin: 0 0 40px;
+    margin: 0 0 44px;
     line-height: 1.7;
     font-weight: 400;
 }
@@ -575,6 +577,7 @@ body.cursor-hover #cursor-dot {
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
+    margin-top: 12px;
 }
 
 .btn-primary {
