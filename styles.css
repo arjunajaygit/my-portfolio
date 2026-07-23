@@ -30,6 +30,110 @@
     --transition: all 0.35s var(--ease-out);
 }
 
+/* =============================================
+   LIGHT MODE THEME SYSTEM ([data-theme="light"])
+   ============================================= */
+[data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-surface: rgba(255, 255, 255, 0.85);
+    --bg-surface-hover: rgba(255, 255, 255, 0.96);
+    --bg-glass: rgba(255, 255, 255, 0.88);
+    --border: rgba(15, 23, 42, 0.12);
+    --border-hover: rgba(15, 23, 42, 0.32);
+    --border-accent: rgba(15, 23, 42, 0.6);
+    
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-tertiary: #64748b;
+    --text-muted: #94a3b8;
+    --accent: #0f172a;
+    --code-green: #16a34a;
+    --code-cyan: #0284c7;
+}
+
+[data-theme="light"] html {
+    background-color: #f8fafc;
+}
+
+[data-theme="light"] .perspective-grid-floor {
+    background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+}
+
+[data-theme="light"] .bg-cursor-spotlight {
+    background: radial-gradient(700px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(15, 23, 42, 0.04), transparent 75%);
+}
+
+[data-theme="light"] #cursor-dot {
+    background: #0f172a;
+}
+
+[data-theme="light"] #cursor-ring {
+    border-color: rgba(15, 23, 42, 0.35);
+}
+
+[data-theme="light"] body.cursor-hover #cursor-ring {
+    border-color: rgba(15, 23, 42, 0.85);
+    background: rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .btn-primary {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+[data-theme="light"] .btn-primary:hover {
+    background: #1e293b;
+    color: #ffffff;
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.25);
+}
+
+[data-theme="light"] .btn-secondary,
+[data-theme="light"] .btn-icon-only,
+[data-theme="light"] .hero-location-badge,
+[data-theme="light"] .stat-card,
+[data-theme="light"] .tech-pill,
+[data-theme="light"] .date-badge,
+[data-theme="light"] .project-icon-link {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(15, 23, 42, 0.12);
+    color: #0f172a;
+}
+
+[data-theme="light"] .btn-secondary:hover,
+[data-theme="light"] .btn-icon-only:hover,
+[data-theme="light"] .hero-location-badge:hover,
+[data-theme="light"] .stat-card:hover,
+[data-theme="light"] .tech-pill:hover {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.3);
+}
+
+[data-theme="light"] .bento-card,
+[data-theme="light"] .timeline-card,
+[data-theme="light"] .tech-group,
+[data-theme="light"] .git-log-container,
+[data-theme="light"] .ide-container,
+[data-theme="light"] .contact-box,
+[data-theme="light"] .brand-corner-logo,
+[data-theme="light"] .topnav {
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-textarea {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.15);
+    color: #0f172a;
+}
+
+[data-theme="light"] .form-input:focus,
+[data-theme="light"] .form-textarea:focus {
+    border-color: #0f172a;
+    box-shadow: 0 0 20px rgba(15, 23, 42, 0.08);
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -340,9 +444,31 @@ body.cursor-hover #cursor-dot {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.nav-item.active {
-    border: 1px solid var(--border-hover);
+.theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: var(--transition);
 }
+
+.theme-toggle-btn:hover {
+    color: var(--accent);
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.1) rotate(15deg);
+}
+
+.sun-icon { display: none; width: 17px; height: 17px; }
+.moon-icon { display: block; width: 17px; height: 17px; }
+
+[data-theme="light"] .sun-icon { display: block; }
+[data-theme="light"] .moon-icon { display: none; }
 
 .cmd-k-pill {
     display: flex;

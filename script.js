@@ -64,6 +64,29 @@ function closeCmdModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    // 0. LIGHT / DARK THEME TOGGLE & PERSISTENCE
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            if (nextTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            
+            localStorage.setItem('portfolio-theme', nextTheme);
+        });
+    }
+    
     // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
