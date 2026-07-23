@@ -1,5 +1,5 @@
 /* =============================================
-   PORTFOLIO INTERACTION & CS CANVAS ANIMATION
+   PORTFOLIO INTERACTION & 3D CANVAS MATRIX ANIMATION
    ============================================= */
 
 // Global function to switch IDE Tabs
@@ -242,8 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. CS BACKGROUND PARTICLES & BINARY STREAM CANVAS
-    const canvas = document.getElementById('hero-canvas');
+    // 6. FULLSCREEN INTERACTIVE 3D CONSTELLATION & DIGITAL WAVE CANVAS
+    const canvas = document.getElementById('bg-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -251,9 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let binaryStreams = [];
 
         function resizeCanvas() {
-            const heroSection = document.getElementById('home');
-            width = canvas.width = heroSection ? heroSection.clientWidth : window.innerWidth;
-            height = canvas.height = heroSection ? heroSection.clientHeight : window.innerHeight;
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
 
         window.addEventListener('resize', resizeCanvas);
@@ -263,9 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.radius = Math.random() * 1.5 + 1;
+                this.vx = (Math.random() - 0.5) * 0.45;
+                this.vy = (Math.random() - 0.5) * 0.45;
+                this.radius = Math.random() * 1.6 + 1;
             }
 
             update() {
@@ -279,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
                 ctx.fill();
             }
         }
@@ -289,8 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
                 this.text = Math.random() > 0.5 ? '1' : '0';
-                this.speed = Math.random() * 0.3 + 0.1;
-                this.opacity = Math.random() * 0.15 + 0.05;
+                this.speed = Math.random() * 0.35 + 0.15;
+                this.opacity = Math.random() * 0.18 + 0.05;
             }
 
             update() {
@@ -303,14 +302,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             draw() {
-                ctx.font = '10px "JetBrains Mono", monospace';
+                ctx.font = '10.5px "JetBrains Mono", monospace';
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                 ctx.fillText(this.text, this.x, this.y);
             }
         }
 
-        for (let i = 0; i < 40; i++) particles.push(new Particle());
-        for (let i = 0; i < 25; i++) binaryStreams.push(new BinaryBit());
+        for (let i = 0; i < 55; i++) particles.push(new Particle());
+        for (let i = 0; i < 35; i++) binaryStreams.push(new BinaryBit());
 
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
@@ -330,11 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dy = p.y - p2.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < 130) {
+                    if (dist < 140) {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 * (1 - dist / 130)})`;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.14 * (1 - dist / 140)})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }

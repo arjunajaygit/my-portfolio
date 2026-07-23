@@ -1,17 +1,17 @@
 /* =============================================
    PREMIUM HIGH-READABILITY SOFTWARE ENGINEER PORTFOLIO
-   With Ultra-Modern Ambient Aurora Background & Mesh
+   With 3D Perspective Mesh Floor & Obsidian Depth
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
 
 :root {
-    --bg-main: #07080a;
-    --bg-surface: #0e0f14;
-    --bg-surface-hover: #14161d;
-    --bg-glass: rgba(14, 15, 20, 0.82);
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.25);
-    --border-accent: rgba(255, 255, 255, 0.45);
+    --bg-main: #040507;
+    --bg-surface: rgba(14, 16, 22, 0.75);
+    --bg-surface-hover: rgba(20, 23, 32, 0.88);
+    --bg-glass: rgba(10, 12, 16, 0.82);
+    --border: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(255, 255, 255, 0.28);
+    --border-accent: rgba(255, 255, 255, 0.5);
     
     --text-primary: #ffffff;
     --text-secondary: #d4d4d8;
@@ -55,85 +55,103 @@ body {
 }
 
 /* =============================================
-   ULTRA-PREMIUM AMBIENT BACKGROUND & MESH OVERLAY
+   FULLSCREEN INTERACTIVE 3D/CANVAS BACKGROUND
    ============================================= */
 
-/* 1. ANIMATED AMBIENT GLOW ORBS */
+/* 1. FULLSCREEN CANVAS FOR WAVE CONSTELLATIONS & NODE MATRIX */
+#bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -3;
+}
+
+/* 2. 3D PERSPECTIVE GRID FLOOR (SCROLL-MOVING) */
+.perspective-grid-floor {
+    position: fixed;
+    bottom: -30%;
+    left: -50%;
+    width: 200vw;
+    height: 100vh;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(600px) rotateX(72deg);
+    pointer-events: none;
+    z-index: -2;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 80%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 80%);
+    animation: moveGrid 30s linear infinite;
+}
+
+@keyframes moveGrid {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 600px; }
+}
+
+/* 3. DYNAMIC AMBIENT AURORA GLOW ORBS */
 .bg-glow-orb {
     position: fixed;
     border-radius: 50%;
     filter: blur(140px);
     pointer-events: none;
     z-index: -3;
-    opacity: 0.7;
+    opacity: 0.65;
     will-change: transform;
 }
 
 .orb-1 {
     top: 5%;
-    left: 15%;
-    width: 650px;
-    height: 650px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(34, 197, 94, 0.04) 70%, transparent 100%);
-    animation: floatOrb1 22s ease-in-out infinite alternate;
+    left: 10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, rgba(34, 197, 94, 0.05) 60%, transparent 100%);
+    animation: floatOrb1 24s ease-in-out infinite alternate;
 }
 
 .orb-2 {
     top: 45%;
-    right: 10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, rgba(56, 189, 248, 0.05) 70%, transparent 100%);
-    animation: floatOrb2 26s ease-in-out infinite alternate;
+    right: 5%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.09) 0%, rgba(56, 189, 248, 0.06) 60%, transparent 100%);
+    animation: floatOrb2 28s ease-in-out infinite alternate;
 }
 
 .orb-3 {
-    bottom: 10%;
-    left: 20%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(34, 197, 94, 0.09) 0%, rgba(255, 255, 255, 0.03) 70%, transparent 100%);
-    animation: floatOrb3 24s ease-in-out infinite alternate;
+    bottom: 5%;
+    left: 15%;
+    width: 750px;
+    height: 750px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, rgba(255, 255, 255, 0.04) 60%, transparent 100%);
+    animation: floatOrb3 26s ease-in-out infinite alternate;
 }
 
 @keyframes floatOrb1 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(80px, 60px) scale(1.15); }
+    100% { transform: translate(90px, 70px) scale(1.18); }
 }
 
 @keyframes floatOrb2 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-70px, -80px) scale(1.1); }
+    100% { transform: translate(-80px, -90px) scale(1.12); }
 }
 
 @keyframes floatOrb3 {
     0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(60px, -50px) scale(1.2); }
+    100% { transform: translate(70px, -60px) scale(1.22); }
 }
 
-/* 2. CRISP TECH MESH GRID OVERLAY WITH RADIAL FADE MASK */
-.bg-grid-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: -2;
-    mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
-}
-
-/* 3. INTERACTIVE CURSOR LIGHT SPOTLIGHT */
+/* 4. INTERACTIVE CURSOR SPOTLIGHT */
 .bg-cursor-spotlight {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     pointer-events: none;
     z-index: -1;
-    background: radial-gradient(650px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255, 255, 255, 0.035), transparent 80%);
+    background: radial-gradient(700px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255, 255, 255, 0.04), transparent 80%);
     transition: background 0.05s linear;
 }
 
@@ -381,6 +399,7 @@ body.cursor-hover #cursor-dot {
     width: 90%;
     max-width: 580px;
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-hover);
     border-radius: 16px;
     overflow: hidden;
@@ -508,14 +527,6 @@ body.cursor-hover #cursor-dot {
     padding-bottom: 60px;
 }
 
-#hero-canvas {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
 .hero-content {
     position: relative;
     z-index: 1;
@@ -595,6 +606,7 @@ body.cursor-hover #cursor-dot {
     padding: 8px 16px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
     border-radius: 999px;
     font-family: var(--font-mono);
     font-size: 13px;
@@ -615,8 +627,9 @@ body.cursor-hover #cursor-dot {
 }
 
 .stat-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
     border-radius: 14px;
     padding: 16px 24px;
     min-width: 140px;
@@ -625,7 +638,7 @@ body.cursor-hover #cursor-dot {
 
 .stat-card:hover {
     border-color: var(--border-hover);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.06);
     transform: translateY(-4px) scale(1.02);
 }
 
@@ -691,6 +704,7 @@ body.cursor-hover #cursor-dot {
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
     color: var(--text-primary);
     font-family: var(--font-mono);
     font-size: 14px;
@@ -710,6 +724,7 @@ body.cursor-hover #cursor-dot {
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -729,6 +744,7 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 .ide-container {
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 20px;
     overflow: hidden;
@@ -854,6 +870,7 @@ body.cursor-hover #cursor-dot {
 
 .timeline-card {
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px;
@@ -933,6 +950,7 @@ body.cursor-hover #cursor-dot {
 
 .bento-card {
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 32px;
@@ -953,7 +971,7 @@ body.cursor-hover #cursor-dot {
     background: linear-gradient(
         45deg,
         transparent 45%,
-        rgba(255, 255, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.035) 50%,
         transparent 55%
     );
     transform: rotate(30deg) translateY(-100%);
@@ -1087,6 +1105,7 @@ body.cursor-hover #cursor-dot {
 
 .tech-group {
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px;
@@ -1140,6 +1159,7 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 .git-log-container {
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 28px;
@@ -1194,6 +1214,7 @@ body.cursor-hover #cursor-dot {
    ============================================= */
 .contact-box {
     background: var(--bg-surface);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 40px;
@@ -1226,7 +1247,7 @@ body.cursor-hover #cursor-dot {
 .form-input, .form-textarea {
     width: 100%;
     padding: 14px 18px;
-    background: var(--bg-main);
+    background: rgba(4, 5, 7, 0.8);
     border: 1px solid var(--border);
     border-radius: 10px;
     color: var(--text-primary);
