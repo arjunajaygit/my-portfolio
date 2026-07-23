@@ -103,7 +103,67 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
-    // 2. SCROLL PROGRESS BAR & PARALLAX HERO SCROLL EFFECT
+    // 2. DYNAMIC MORPHING MATRIX DECODER TITLE ROTATOR
+    const roleTextMain = document.getElementById('role-text-main');
+    const rolesList = [
+        "SOFTWARE ENGINEER",
+        "FULL-STACK DEVELOPER",
+        "DEVSECOPS AUTOMATION",
+        "AGENTIC AI SYSTEMS"
+    ];
+    const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>/~+";
+    let roleIndex = 0;
+
+    function scrambleText(targetText, callback) {
+        if (!roleTextMain) return;
+        let iteration = 0;
+        const maxIterations = targetText.length * 2;
+        
+        const interval = setInterval(() => {
+            roleTextMain.innerText = targetText
+                .split("")
+                .map((char, index) => {
+                    if (char === " ") return " ";
+                    if (index < iteration / 2) {
+                        return targetText[index];
+                    }
+                    return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+                })
+                .join("");
+
+            if (iteration >= maxIterations) {
+                clearInterval(interval);
+                roleTextMain.innerText = targetText;
+                if (callback) callback();
+            }
+            iteration += 1;
+        }, 30);
+    }
+
+    function rotateRoleTitle() {
+        if (!roleTextMain) return;
+
+        // Slide Out current
+        roleTextMain.classList.add('swap-out');
+
+        setTimeout(() => {
+            roleIndex = (roleIndex + 1) % rolesList.length;
+            const nextRole = rolesList[roleIndex];
+
+            roleTextMain.classList.remove('swap-out');
+            roleTextMain.classList.add('swap-in', 'decoding');
+
+            // Trigger Scramble Decoding
+            scrambleText(nextRole, () => {
+                roleTextMain.classList.remove('swap-in', 'decoding');
+            });
+        }, 350);
+    }
+
+    // Rotate title every 3.2 seconds
+    setInterval(rotateRoleTitle, 3200);
+
+    // 3. SCROLL PROGRESS BAR & PARALLAX HERO SCROLL EFFECT
     const progressBar = document.getElementById('scroll-progress');
     const heroParallax = document.getElementById('hero-parallax-target');
 
@@ -121,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. COMMAND PALETTE MODAL CONTROLS (CMD + K)
+    // 4. COMMAND PALETTE MODAL CONTROLS (CMD + K)
     const cmdTrigger = document.getElementById('cmd-trigger');
     const cmdModal = document.getElementById('cmd-modal');
     const cmdInput = document.getElementById('cmd-search-input');
@@ -150,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeCmdModal();
     });
 
-    // 4. CONTACT FORM DIRECT EMAIL DISPATCH (rjun.ajay@gmail.com)
+    // 5. CONTACT FORM DIRECT EMAIL DISPATCH (rjun.ajay@gmail.com)
     const contactForm = document.getElementById('contact-form');
     const statusMsg = document.getElementById('contact-status-msg');
     const submitBtn = document.getElementById('contact-submit-btn');
@@ -210,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. INTERSECTION OBSERVER FOR MULTI-TYPE SCROLL REVEALS
+    // 6. INTERSECTION OBSERVER FOR MULTI-TYPE SCROLL REVEALS
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -242,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. FULLSCREEN INTERACTIVE 3D CONSTELLATION & DIGITAL WAVE CANVAS
+    // 7. FULLSCREEN INTERACTIVE 3D CONSTELLATION & DIGITAL WAVE CANVAS
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');

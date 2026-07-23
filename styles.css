@@ -572,25 +572,43 @@ body.cursor-hover #cursor-dot {
 
 .hero-role-stacked {
     margin-bottom: 32px;
-    line-height: 0.95;
+    line-height: 1.0;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
 }
 
-.role-primary {
+.dynamic-title-box {
     font-family: var(--font-display);
-    font-size: clamp(40px, 6.5vw, 76px);
+    font-size: clamp(36px, 6vw, 72px);
     font-weight: 900;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
     color: #ffffff;
-    display: block;
+    display: inline-block;
+    position: relative;
 }
 
-.role-secondary {
-    font-family: var(--font-display);
-    font-size: clamp(40px, 6.5vw, 76px);
-    font-weight: 900;
-    letter-spacing: -2px;
-    color: #a1a1aa;
-    display: block;
+.role-anim-text {
+    display: inline-block;
+    transition: transform 0.4s var(--ease-out), opacity 0.4s ease, filter 0.4s ease;
+    will-change: transform, opacity, filter;
+}
+
+.role-anim-text.decoding {
+    color: var(--code-cyan);
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.role-anim-text.swap-out {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+    filter: blur(8px);
+}
+
+.role-anim-text.swap-in {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    filter: blur(8px);
 }
 
 .hero-meta-bar {
