@@ -64,29 +64,6 @@ function closeCmdModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 0. LIGHT / DARK THEME TOGGLE & PERSISTENCE
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    const savedTheme = localStorage.getItem('portfolio-theme');
-
-    if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            if (nextTheme === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
-            
-            localStorage.setItem('portfolio-theme', nextTheme);
-        });
-    }
-    
     // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
@@ -453,10 +430,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             draw() {
-                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = isLight ? 'rgba(15, 23, 42, 0.22)' : 'rgba(255, 255, 255, 0.28)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
                 ctx.fill();
             }
         }
@@ -480,9 +456,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             draw() {
-                const isLight = document.documentElement.getAttribute('data-theme') === 'light';
                 ctx.font = '10.5px "JetBrains Mono", monospace';
-                ctx.fillStyle = isLight ? `rgba(15, 23, 42, ${this.opacity * 1.2})` : `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                 ctx.fillText(this.text, this.x, this.y);
             }
         }
@@ -492,7 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
-            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
             binaryStreams.forEach(bit => {
                 bit.update();
@@ -513,9 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = isLight 
-                            ? `rgba(15, 23, 42, ${0.12 * (1 - dist / 140)})` 
-                            : `rgba(255, 255, 255, ${0.14 * (1 - dist / 140)})`;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.14 * (1 - dist / 140)})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
