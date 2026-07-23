@@ -97,7 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
-    // 2. COMMAND PALETTE MODAL CONTROLS (CMD + K)
+    // 2. SCROLL PROGRESS BAR & PARALLAX HERO SCROLL EFFECT
+    const progressBar = document.getElementById('scroll-progress');
+    const heroParallax = document.getElementById('hero-parallax-target');
+
+    window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Parallax hero movement
+        if (heroParallax && window.scrollY < 800) {
+            heroParallax.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+            heroParallax.style.opacity = `${1 - (window.scrollY / 750)}`;
+        }
+    });
+
+    // 3. COMMAND PALETTE MODAL CONTROLS (CMD + K)
     const cmdTrigger = document.getElementById('cmd-trigger');
     const cmdModal = document.getElementById('cmd-modal');
     const cmdInput = document.getElementById('cmd-search-input');
@@ -126,16 +144,76 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeCmdModal();
     });
 
-    // 3. SCROLL REVEAL OBSERVER
+    // 4. CONTACT FORM DIRECT EMAIL DISPATCH (rjun.ajay@gmail.com)
+    const contactForm = document.getElementById('contact-form');
+    const statusMsg = document.getElementById('contact-status-msg');
+    const submitBtn = document.getElementById('contact-submit-btn');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const message = document.getElementById('form-message').value;
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.querySelector('span').innerText = 'Sending...';
+            }
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/rjun.ajay@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message,
+                        _subject: `New Portfolio Message from ${name} (${email})`
+                    })
+                });
+
+                if (response.ok) {
+                    if (statusMsg) {
+                        statusMsg.className = 'contact-status-msg success';
+                        statusMsg.innerText = '✓ Message sent successfully to rjun.ajay@gmail.com! Arjun will get back to you shortly.';
+                    }
+                    contactForm.reset();
+                } else {
+                    throw new Error('Server response error');
+                }
+            } catch (err) {
+                // Fallback to mailto protocol directly
+                const mailtoUrl = `mailto:rjun.ajay@gmail.com?subject=${encodeURIComponent('Portfolio Contact from ' + name)}&body=${encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
+                window.location.href = mailtoUrl;
+
+                if (statusMsg) {
+                    statusMsg.className = 'contact-status-msg success';
+                    statusMsg.innerText = '✓ Opening your email client to send to rjun.ajay@gmail.com...';
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('span').innerText = 'Send Message';
+                }
+            }
+        });
+    }
+
+    // 5. INTERSECTION OBSERVER FOR MULTI-TYPE SCROLL REVEALS
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale').forEach(el => revealObserver.observe(el));
 
     // Active Navigation Highlight on Scroll
     const sections = document.querySelectorAll('section');
@@ -144,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 200;
+            const sectionTop = section.offsetTop - 220;
             if (window.scrollY >= sectionTop) {
                 current = section.getAttribute('id');
             }
@@ -158,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. CS BACKGROUND PARTICLES & BINARY STREAM CANVAS
+    // 6. CS BACKGROUND PARTICLES & BINARY STREAM CANVAS
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');

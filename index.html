@@ -14,6 +14,9 @@
 </head>
 <body>
 
+    <!-- TOP SCROLL PROGRESS BAR -->
+    <div id="scroll-progress"></div>
+
     <!-- CUSTOM CURSOR -->
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
@@ -99,9 +102,9 @@
     <div class="page-container">
 
         <!-- HERO SECTION -->
-        <section id="home" class="section-hero reveal">
+        <section id="home" class="section-hero reveal-up">
             <canvas id="hero-canvas"></canvas>
-            <div class="hero-content">
+            <div class="hero-content" id="hero-parallax-target">
 
                 <div class="hero-intro-label">HELLO WORLD, I'M</div>
 
@@ -163,7 +166,7 @@
         </section>
 
         <!-- ABOUT SECTION (INTERACTIVE TABBED IDE CARD) -->
-        <section id="about" class="section-block reveal">
+        <section id="about" class="section-block reveal-scale">
             <div class="section-tag">ABOUT ME</div>
             <div class="section-heading-wrapper">
                 <div class="section-title-stacked">
@@ -204,7 +207,7 @@
         </section>
 
         <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="section-block reveal">
+        <section id="experience" class="section-block reveal-left">
             <div class="section-tag">WORK EXPERIENCE</div>
             <div class="section-heading-wrapper">
                 <div class="section-title-stacked">
@@ -214,7 +217,7 @@
             </div>
 
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item reveal-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <div class="timeline-header">
@@ -232,7 +235,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <div class="timeline-header">
@@ -249,7 +252,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item reveal-up">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <div class="timeline-header">
@@ -268,7 +271,7 @@
         </section>
 
         <!-- PROJECTS SECTION (BENTO GRID WITH CS ARCHITECTURAL METRICS) -->
-        <section id="projects" class="section-block reveal">
+        <section id="projects" class="section-block reveal-up">
             <div class="section-tag">FEATURED PROJECTS</div>
             <div class="section-heading-wrapper">
                 <div class="section-title-stacked">
@@ -279,7 +282,7 @@
 
             <div class="bento-grid">
                 <!-- SENTINELOPS -->
-                <div class="bento-card featured">
+                <div class="bento-card featured reveal-scale">
                     <div class="bento-tag-row">
                         <span class="project-category">DevSecOps & Multi-Agent AI</span>
                         <a href="https://github.com/arjunajaygit/SentinelOps" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
@@ -308,7 +311,7 @@
                 </div>
 
                 <!-- PAYROLLPRO -->
-                <div class="bento-card">
+                <div class="bento-card reveal-up">
                     <div class="bento-tag-row">
                         <span class="project-category">Full-Stack Web App</span>
                         <a href="https://github.com/arjunajaygit/Payroll-Automation-" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
@@ -337,7 +340,7 @@
                 </div>
 
                 <!-- CIMS -->
-                <div class="bento-card">
+                <div class="bento-card reveal-up">
                     <div class="bento-tag-row">
                         <span class="project-category">Disaster Response Mobile App</span>
                         <a href="https://github.com/ADVAITH-S-DEV/CIMS_project" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
@@ -365,7 +368,7 @@
                 </div>
 
                 <!-- QUICKDOC -->
-                <div class="bento-card featured">
+                <div class="bento-card featured reveal-scale">
                     <div class="bento-tag-row">
                         <span class="project-category">Healthcare Platform</span>
                         <a href="https://github.com/arjunajaygit/Quickdoc" target="_blank" rel="noopener" class="project-icon-link" title="View Source on GitHub">
@@ -395,7 +398,7 @@
         </section>
 
         <!-- TECH STACK SECTION -->
-        <section id="tech" class="section-block reveal">
+        <section id="tech" class="section-block reveal-up">
             <div class="section-tag">TECHNICAL SKILLS</div>
             <div class="section-heading-wrapper">
                 <div class="section-title-stacked">
@@ -405,7 +408,7 @@
             </div>
 
             <div class="tech-grid">
-                <div class="tech-group">
+                <div class="tech-group reveal-up">
                     <div class="tech-group-title">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                         <span>Languages</span>
@@ -419,7 +422,7 @@
                     </div>
                 </div>
 
-                <div class="tech-group">
+                <div class="tech-group reveal-up">
                     <div class="tech-group-title">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                         <span>Frameworks & Libraries</span>
@@ -437,7 +440,7 @@
                     </div>
                 </div>
 
-                <div class="tech-group">
+                <div class="tech-group reveal-up">
                     <div class="tech-group-title">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
                         <span>Databases</span>
@@ -450,7 +453,7 @@
                     </div>
                 </div>
 
-                <div class="tech-group">
+                <div class="tech-group reveal-up">
                     <div class="tech-group-title">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                         <span>Tools & Platforms</span>
@@ -469,7 +472,7 @@
         </section>
 
         <!-- ACHIEVEMENTS SECTION (GIT LOG) -->
-        <section id="achievements" class="section-block reveal">
+        <section id="achievements" class="section-block reveal-up">
             <div class="section-tag">CERTIFICATES & ACHIEVEMENTS</div>
             <div class="section-heading-wrapper">
                 <div class="section-title-stacked">
@@ -479,7 +482,7 @@
             </div>
 
             <div class="git-log-container">
-                <div class="git-entry">
+                <div class="git-entry reveal-up">
                     <div class="git-hash">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
                         <span>SILVER MEDAL</span>
@@ -490,7 +493,7 @@
                     </div>
                 </div>
 
-                <div class="git-entry">
+                <div class="git-entry reveal-up">
                     <div class="git-hash">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         <span>CERTIFIED</span>
@@ -501,7 +504,7 @@
                     </div>
                 </div>
 
-                <div class="git-entry">
+                <div class="git-entry reveal-up">
                     <div class="git-hash">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                         <span>RANK 7th</span>
@@ -515,7 +518,7 @@
         </section>
 
         <!-- CONTACT SECTION -->
-        <section id="contact" class="section-block reveal">
+        <section id="contact" class="section-block reveal-scale">
             <div class="section-tag">GET IN TOUCH</div>
             <div class="section-heading-wrapper">
                 <div class="section-title-stacked">
@@ -525,20 +528,27 @@
             </div>
 
             <div class="contact-box">
-                <form class="contact-form">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/rjun.ajay@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Portfolio Message for Arjun A!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
                     <div class="form-group">
                         <label for="form-name">NAME</label>
-                        <input type="text" id="form-name" class="form-input" placeholder="Your name" required>
+                        <input type="text" id="form-name" name="name" class="form-input" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
                         <label for="form-email">EMAIL</label>
-                        <input type="email" id="form-email" class="form-input" placeholder="your.email@example.com" required>
+                        <input type="email" id="form-email" name="email" class="form-input" placeholder="your.email@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="form-message">MESSAGE</label>
-                        <textarea id="form-message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+                        <textarea id="form-message" name="message" class="form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
                     </div>
-                    <button type="submit" class="btn-primary">
+
+                    <div id="contact-status-msg" class="contact-status-msg"></div>
+
+                    <button type="submit" id="contact-submit-btn" class="btn-primary">
                         <span>Send Message</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                     </button>
