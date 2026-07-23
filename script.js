@@ -2,6 +2,66 @@
    PORTFOLIO INTERACTION & CS CANVAS ANIMATION
    ============================================= */
 
+// Global function to switch IDE Tabs
+function switchIdeTab(tabName) {
+    const gutter = document.getElementById('ide-gutter');
+    const content = document.getElementById('ide-content');
+    const tabs = document.querySelectorAll('.ide-tab');
+
+    tabs.forEach(t => t.classList.remove('active'));
+
+    if (tabName === 'profile') {
+        if (tabs[0]) tabs[0].classList.add('active');
+        if (gutter) gutter.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9';
+        if (content) {
+            content.innerHTML = `
+                <span class="code-key">name:</span> <span class="code-str">"Arjun A"</span><br>
+                <span class="code-key">title:</span> <span class="code-str">"Software Engineer"</span><br>
+                <span class="code-key">education:</span><br>
+                &nbsp;&nbsp;- <span class="code-str">"B.Tech Information Technology @ CUSAT (CGPA: 8.95/10)"</span><br>
+                &nbsp;&nbsp;- <span class="code-str">"BS Data Science & Applications @ IIT Madras"</span><br>
+                <span class="code-key">focus:</span> <span class="code-arr">["Full-Stack Web & Mobile", "DevSecOps Automation", "Multi-Agent AI"]</span><br>
+                <span class="code-key">location:</span> <span class="code-str">"Kochi, Kerala, India"</span><br>
+                <span class="code-key">email:</span> <span class="code-str">"rjun.ajay@gmail.com"</span>
+            `;
+        }
+    } else if (tabName === 'stack') {
+        if (tabs[1]) tabs[1].classList.add('active');
+        if (gutter) gutter.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7';
+        if (content) {
+            content.innerHTML = `
+                <span class="code-key">export const</span> <span class="code-str">developerStack</span> = {<br>
+                &nbsp;&nbsp;<span class="code-key">languages:</span> [<span class="code-str">"C++"</span>, <span class="code-str">"TypeScript"</span>, <span class="code-str">"Python"</span>, <span class="code-str">"Dart"</span>, <span class="code-str">"SQL"</span>],<br>
+                &nbsp;&nbsp;<span class="code-key">frameworks:</span> [<span class="code-str">"Next.js"</span>, <span class="code-str">"Flutter"</span>, <span class="code-str">"FastAPI"</span>, <span class="code-str">"LangGraph"</span>],<br>
+                &nbsp;&nbsp;<span class="code-key">databases:</span> [<span class="code-str">"PostgreSQL"</span>, <span class="code-str">"MongoDB"</span>, <span class="code-str">"ChromaDB"</span>],<br>
+                &nbsp;&nbsp;<span class="code-key">tooling:</span> [<span class="code-str">"Docker"</span>, <span class="code-str">"Firebase"</span>, <span class="code-str">"Prisma"</span>, <span class="code-str">"Semgrep"</span>]<br>
+                };
+            `;
+        }
+    } else if (tabName === 'education') {
+        if (tabs[2]) tabs[2].classList.add('active');
+        if (gutter) gutter.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8';
+        if (content) {
+            content.innerHTML = `
+                {<br>
+                &nbsp;&nbsp;<span class="code-key">"btech"</span>: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"degree"</span>: <span class="code-str">"B.Tech Information Technology"</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"institution"</span>: <span class="code-str">"Cochin University of Science and Technology (CUSAT)"</span>,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"cgpa"</span>: <span class="code-str">"8.95 / 10"</span><br>
+                &nbsp;&nbsp;},<br>
+                &nbsp;&nbsp;<span class="code-key">"bs"</span>: { <span class="code-key">"degree"</span>: <span class="code-str">"BS Data Science"</span>, <span class="code-key">"institution"</span>: <span class="code-str">"IIT Madras"</span> }<br>
+                }
+            `;
+        }
+    }
+}
+
+// Global Command Modal controls
+function closeCmdModal() {
+    const modal = document.getElementById('cmd-modal');
+    if (modal) modal.classList.remove('open');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // 1. CUSTOM CURSOR
@@ -31,13 +91,42 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCursorRing();
 
     // Hover elements
-    const hoverTargets = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .tech-group, .ide-container');
+    const hoverTargets = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .tech-group, .ide-container, .stat-card');
     hoverTargets.forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
-    // 2. SCROLL REVEAL OBSERVER
+    // 2. COMMAND PALETTE MODAL CONTROLS (CMD + K)
+    const cmdTrigger = document.getElementById('cmd-trigger');
+    const cmdModal = document.getElementById('cmd-modal');
+    const cmdInput = document.getElementById('cmd-search-input');
+
+    if (cmdTrigger && cmdModal) {
+        cmdTrigger.addEventListener('click', () => {
+            cmdModal.classList.add('open');
+            if (cmdInput) cmdInput.focus();
+        });
+
+        cmdModal.addEventListener('click', (e) => {
+            if (e.target === cmdModal) closeCmdModal();
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            if (cmdModal) {
+                cmdModal.classList.toggle('open');
+                if (cmdModal.classList.contains('open') && cmdInput) {
+                    cmdInput.focus();
+                }
+            }
+        }
+        if (e.key === 'Escape') closeCmdModal();
+    });
+
+    // 3. SCROLL REVEAL OBSERVER
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -69,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. CS BACKGROUND PARTICLES & BINARY STREAM CANVAS
+    // 4. CS BACKGROUND PARTICLES & BINARY STREAM CANVAS
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -86,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Node Particle Class
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
@@ -112,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Binary Bit Stream Class
         class BinaryBit {
             constructor() {
                 this.x = Math.random() * width;
@@ -144,13 +231,11 @@ document.addEventListener('DOMContentLoaded', () => {
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
 
-            // Draw binary background stream
             binaryStreams.forEach(bit => {
                 bit.update();
                 bit.draw();
             });
 
-            // Draw particles & graph edges
             particles.forEach((p, index) => {
                 p.update();
                 p.draw();

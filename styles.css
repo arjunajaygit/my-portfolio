@@ -1,16 +1,16 @@
 /* =============================================
    PREMIUM HIGH-READABILITY SOFTWARE ENGINEER PORTFOLIO
-   With Computer Science & Engineering Elements
+   With Ultra-Modern UI & Interactive CS Elements
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
 
 :root {
-    --bg-main: #0a0a0c;
-    --bg-surface: #121216;
-    --bg-surface-hover: #181820;
-    --bg-glass: rgba(18, 18, 22, 0.85);
+    --bg-main: #090a0c;
+    --bg-surface: #111216;
+    --bg-surface-hover: #171820;
+    --bg-glass: rgba(17, 18, 22, 0.85);
     --border: rgba(255, 255, 255, 0.1);
-    --border-hover: rgba(255, 255, 255, 0.25);
+    --border-hover: rgba(255, 255, 255, 0.28);
     --border-accent: rgba(255, 255, 255, 0.45);
     
     --text-primary: #ffffff;
@@ -166,7 +166,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   NAVIGATION BAR
+   NAVIGATION BAR & CMD K PILL
    ============================================= */
 .topnav {
     position: fixed;
@@ -210,6 +210,123 @@ body.cursor-hover #cursor-dot {
 
 .nav-item.active {
     border: 1px solid var(--border-hover);
+}
+
+.cmd-k-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    transition: var(--transition);
+}
+
+.cmd-k-pill:hover {
+    color: var(--accent);
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cmd-key {
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-size: 10px;
+    color: var(--text-primary);
+}
+
+/* =============================================
+   COMMAND PALETTE MODAL
+   ============================================= */
+.cmd-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    z-index: 10000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 15vh;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.cmd-modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cmd-modal-box {
+    width: 90%;
+    max-width: 580px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-hover);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.05);
+    transform: translateY(-20px) scale(0.96);
+    transition: transform 0.3s var(--ease-out);
+}
+
+.cmd-modal-overlay.open .cmd-modal-box {
+    transform: translateY(0) scale(1);
+}
+
+.cmd-search-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cmd-search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14.5px;
+    outline: none;
+}
+
+.cmd-options-list {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cmd-option-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.cmd-option-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent);
+}
+
+.cmd-shortcut {
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 /* =============================================
@@ -265,7 +382,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   CS / COMPUTER SCIENCE STATUS KERNEL BAR
+   CS / KERNEL STATUS BAR
    ============================================= */
 .kernel-status-bar {
     display: flex;
@@ -298,7 +415,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   HERO SECTION
+   HERO SECTION & METRIC COUNTERS
    ============================================= */
 .section-hero {
     position: relative;
@@ -340,7 +457,6 @@ body.cursor-hover #cursor-dot {
     font-weight: 800;
 }
 
-/* HERO NAME TITLE */
 .hero-name-heading {
     font-family: var(--font-display);
     font-size: clamp(52px, 8vw, 96px);
@@ -356,7 +472,6 @@ body.cursor-hover #cursor-dot {
     letter-spacing: -1px;
 }
 
-/* HERO ROLE STACKED (SOLID & HIGH CONTRAST) */
 .hero-role-stacked {
     margin-bottom: 32px;
     line-height: 0.95;
@@ -405,6 +520,45 @@ body.cursor-hover #cursor-dot {
 .hero-location-badge:hover {
     border-color: var(--border-hover);
     background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-stats-row {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 24px;
+    min-width: 140px;
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.stat-val {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.stat-lbl {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .hero-description {
@@ -485,7 +639,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   ABOUT SECTION (IDE YML CARD)
+   ABOUT SECTION (INTERACTIVE TABBED IDE CARD)
    ============================================= */
 .ide-container {
     background: var(--bg-surface);
@@ -504,7 +658,7 @@ body.cursor-hover #cursor-dot {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 24px;
+    padding: 10px 20px;
     background: rgba(255, 255, 255, 0.02);
     border-bottom: 1px solid var(--border);
 }
@@ -523,10 +677,25 @@ body.cursor-hover #cursor-dot {
 .ide-dot.yellow { background: #f59e0b; }
 .ide-dot.green { background: #22c55e; }
 
-.ide-title {
+.ide-tabs {
+    display: flex;
+    gap: 4px;
+}
+
+.ide-tab {
+    padding: 6px 14px;
+    border-radius: 6px;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-tertiary);
+    transition: var(--transition);
+    background: transparent;
+    border: none;
+}
+
+.ide-tab.active, .ide-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .ide-body {
@@ -536,6 +705,7 @@ body.cursor-hover #cursor-dot {
     font-family: var(--font-mono);
     font-size: 14.5px;
     line-height: 1.85;
+    min-height: 240px;
 }
 
 .ide-gutter {
@@ -659,7 +829,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   PROJECTS SECTION (BENTO GRID WITH CS METRICS)
+   PROJECTS SECTION (BENTO GRID WITH METRICS)
    ============================================= */
 .bento-grid {
     display: grid;
@@ -843,7 +1013,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   ACHIEVEMENTS SECTION (AUTHENTIC GIT TREE VISUALIZER)
+   ACHIEVEMENTS SECTION (GIT LOG)
    ============================================= */
 .git-log-container {
     background: var(--bg-surface);
@@ -858,7 +1028,6 @@ body.cursor-hover #cursor-dot {
     gap: 20px;
     padding: 18px 0;
     border-bottom: 1px dashed var(--border);
-    position: relative;
 }
 
 .git-entry:last-child {
@@ -872,7 +1041,7 @@ body.cursor-hover #cursor-dot {
     color: #ffffff;
     font-weight: 700;
     font-size: 13px;
-    min-width: 160px;
+    min-width: 150px;
 }
 
 .git-hash svg {
