@@ -8,7 +8,7 @@
     --bg-main: #0a0a0c;
     --bg-surface: #121216;
     --bg-surface-hover: #181820;
-    --bg-glass: rgba(18, 18, 22, 0.7);
+    --bg-glass: rgba(18, 18, 22, 0.75);
     --border: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(255, 255, 255, 0.22);
     --border-accent: rgba(255, 255, 255, 0.4);
@@ -24,7 +24,7 @@
     --font-display: 'Syne', sans-serif;
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --transition: all 0.3s var(--ease-out);
+    --transition: all 0.35s var(--ease-out);
 }
 
 *, *::before, *::after {
@@ -48,7 +48,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
         radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 100% 100%, 36px 36px;
 }
@@ -105,7 +105,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   CORNER BRAND LOGO (PIXEL AVATAR IN TOP CORNER)
+   CORNER BRAND LOGO (PIXEL AVATAR LOGO)
    ============================================= */
 .brand-corner-logo {
     position: fixed;
@@ -115,7 +115,7 @@ body.cursor-hover #cursor-dot {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 6px 14px 6px 6px;
+    padding: 6px 16px 6px 6px;
     background: var(--bg-glass);
     border: 1px solid var(--border);
     backdrop-filter: blur(16px);
@@ -216,7 +216,7 @@ body.cursor-hover #cursor-dot {
 .page-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 120px 32px 80px;
+    padding: 130px 32px 80px;
 }
 
 .section-block {
@@ -251,7 +251,7 @@ body.cursor-hover #cursor-dot {
 
 .title-solid {
     font-family: var(--font-display);
-    font-size: clamp(48px, 7vw, 84px);
+    font-size: clamp(44px, 6.5vw, 80px);
     font-weight: 900;
     letter-spacing: -2.5px;
     color: var(--text-primary);
@@ -260,7 +260,7 @@ body.cursor-hover #cursor-dot {
 
 .title-ghost {
     font-family: var(--font-display);
-    font-size: clamp(48px, 7vw, 84px);
+    font-size: clamp(44px, 6.5vw, 80px);
     font-weight: 900;
     letter-spacing: -2.5px;
     color: transparent;
@@ -269,11 +269,11 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   HERO SECTION
+   HERO SECTION & PROMINENT NAME DESIGN
    ============================================= */
 .section-hero {
     position: relative;
-    min-height: 75vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -290,14 +290,62 @@ body.cursor-hover #cursor-dot {
 .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 900px;
+    max-width: 950px;
+}
+
+/* HERO NAME PRESENTATION */
+.hero-intro-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-tertiary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.hero-intro-label::before {
+    content: '>';
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.hero-name-wrapper {
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+.hero-name-title {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 8.5vw, 108px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 0.95;
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.hero-name-wrapper:hover .hero-name-title {
+    letter-spacing: -1px;
+    filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.3));
+}
+
+.hero-role-stacked {
+    margin-bottom: 28px;
+    line-height: 0.88;
 }
 
 .hero-meta-bar {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
 }
 
@@ -318,7 +366,7 @@ body.cursor-hover #cursor-dot {
     font-size: 19px;
     color: var(--text-secondary);
     max-width: 680px;
-    margin: 28px 0 40px;
+    margin: 0 0 40px;
     line-height: 1.7;
     font-weight: 400;
 }
@@ -633,10 +681,23 @@ body.cursor-hover #cursor-dot {
 }
 
 .project-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 24px;
     font-weight: 700;
     color: var(--accent);
     margin-bottom: 12px;
+}
+
+.project-title svg {
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.bento-card:hover .project-title svg {
+    color: var(--accent);
+    transform: scale(1.1);
 }
 
 .project-desc {
@@ -741,10 +802,17 @@ body.cursor-hover #cursor-dot {
 }
 
 .git-hash {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     color: #e4e4e7;
     font-weight: 700;
     font-size: 13px;
-    min-width: 140px;
+    min-width: 150px;
+}
+
+.git-hash svg {
+    color: var(--text-secondary);
 }
 
 .git-msg-title {
