@@ -71,30 +71,41 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
 
+    function renderCursorRing() {
+        const dx = mouseX - ringX;
+        const dy = mouseY - ringY;
+        
+        ringX += dx * 0.15;
+        ringY += dy * 0.15;
+        
+        if (ring) {
+            // translate3d forces GPU hardware acceleration
+            ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+        }
+        
+        // Pause the animation loop if the ring has caught up to the mouse to save battery
+        if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+            requestAnimationFrame(renderCursorRing);
+        }
+    }
+    renderCursorRing();
+
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
         if (dot) {
-            dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         }
 
         if (spotlight) {
             spotlight.style.setProperty('--spot-x', `${mouseX}px`);
             spotlight.style.setProperty('--spot-y', `${mouseY}px`);
         }
-    });
-
-    function renderCursorRing() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
         
-        if (ring) {
-            ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-        }
+        // Wake up the ring animation if it was idle
         requestAnimationFrame(renderCursorRing);
-    }
-    renderCursorRing();
+    });
 
     // Hover elements
     const hoverTargets = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .tech-group, .ide-container, .stat-card');
@@ -379,21 +390,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 220;
-            if (window.scrollY >= sectionTop) {
-                current = section.getAttribute('id');
-            }
-        });
+    let sectionOffsets = [];
+    function calculateSectionOffsets() {
+        sectionOffsets = Array.from(sections).map(section => ({
+            id: section.getAttribute('id'),
+            top: section.offsetTop - 220
+        }));
+    }
+    
+    // Calculate once on load and recalculate on resize
+    calculateSectionOffsets();
+    window.addEventListener('resize', calculateSectionOffsets);
 
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${current}`) {
-                item.classList.add('active');
-            }
-        });
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+                let current = '';
+                const scrollY = window.scrollY;
+                
+                sectionOffsets.forEach(section => {
+                    if (scrollY >= section.top) {
+                        current = section.id;
+                    }
+                });
+
+                navItems.forEach(item => {
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
     });
 
     // 7. FULLSCREEN INTERACTIVE 3D CONSTELLATION & DIGITAL WAVE CANVAS
@@ -462,8 +494,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        for (let i = 0; i < 55; i++) particles.push(new Particle());
-        for (let i = 0; i < 35; i++) binaryStreams.push(new BinaryBit());
+        // Adapt particle count based on screen size to save battery and GPU on mobile
+        const isMobile = window.innerWidth < 768;
+        const numParticles = isMobile ? 20 : 55;
+        const numBits = isMobile ? 15 : 35;
+
+        for (let i = 0; i < numParticles; i++) particles.push(new Particle());
+        for (let i = 0; i < numBits; i++) binaryStreams.push(new BinaryBit());
 
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
@@ -481,9 +518,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const p2 = particles[j];
                     const dx = p.x - p2.x;
                     const dy = p.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const distSq = dx * dx + dy * dy;
 
-                    if (dist < 140) {
+                    // 19600 is 140 * 140. Optimize by avoiding Math.sqrt if out of range.
+                    if (distSq < 19600) {
+                        const dist = Math.sqrt(distSq);
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
