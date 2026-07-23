@@ -1,5 +1,6 @@
 /* =============================================
    PREMIUM HIGH-READABILITY SOFTWARE ENGINEER PORTFOLIO
+   With Computer Science & Engineering Elements
    ============================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap');
 
@@ -8,8 +9,8 @@
     --bg-surface: #121216;
     --bg-surface-hover: #181820;
     --bg-glass: rgba(18, 18, 22, 0.85);
-    --border: rgba(255, 255, 255, 0.12);
-    --border-hover: rgba(255, 255, 255, 0.28);
+    --border: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.25);
     --border-accent: rgba(255, 255, 255, 0.45);
     
     --text-primary: #ffffff;
@@ -17,6 +18,8 @@
     --text-tertiary: #a1a1aa;
     --text-muted: #71717a;
     --accent: #ffffff;
+    --code-green: #22c55e;
+    --code-cyan: #38bdf8;
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
@@ -158,8 +161,8 @@ body.cursor-hover #cursor-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 8px #22c55e;
+    background: var(--code-green);
+    box-shadow: 0 0 8px var(--code-green);
 }
 
 /* =============================================
@@ -262,7 +265,40 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   HERO SECTION (HIGH READABILITY STACKED DESIGN)
+   CS / COMPUTER SCIENCE STATUS KERNEL BAR
+   ============================================= */
+.kernel-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.kernel-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5px;
+}
+
+.status-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--code-green);
+    box-shadow: 0 0 6px var(--code-green);
+}
+
+/* =============================================
+   HERO SECTION
    ============================================= */
 .section-hero {
     position: relative;
@@ -295,7 +331,7 @@ body.cursor-hover #cursor-dot {
     color: var(--text-tertiary);
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .hero-intro-label::before {
@@ -623,7 +659,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   PROJECTS SECTION (BENTO GRID)
+   PROJECTS SECTION (BENTO GRID WITH CS METRICS)
    ============================================= */
 .bento-grid {
     display: grid;
@@ -712,8 +748,26 @@ body.cursor-hover #cursor-dot {
 .project-desc {
     font-size: 14.5px;
     color: var(--text-secondary);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     line-height: 1.65;
+}
+
+.project-cs-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-bottom: 20px;
+}
+
+.project-cs-badge svg {
+    color: var(--code-green);
 }
 
 .project-tech-stack {
@@ -789,7 +843,7 @@ body.cursor-hover #cursor-dot {
 }
 
 /* =============================================
-   ACHIEVEMENTS SECTION (GIT COMMIT LOG)
+   ACHIEVEMENTS SECTION (AUTHENTIC GIT TREE VISUALIZER)
    ============================================= */
 .git-log-container {
     background: var(--bg-surface);
@@ -804,6 +858,7 @@ body.cursor-hover #cursor-dot {
     gap: 20px;
     padding: 18px 0;
     border-bottom: 1px dashed var(--border);
+    position: relative;
 }
 
 .git-entry:last-child {
@@ -817,11 +872,11 @@ body.cursor-hover #cursor-dot {
     color: #ffffff;
     font-weight: 700;
     font-size: 13px;
-    min-width: 150px;
+    min-width: 160px;
 }
 
 .git-hash svg {
-    color: var(--text-secondary);
+    color: var(--code-green);
 }
 
 .git-msg-title {

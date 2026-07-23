@@ -57,6 +57,13 @@
             <canvas id="hero-canvas"></canvas>
             <div class="hero-content">
                 
+                <!-- CS KERNEL TELEMETRY CHIPS -->
+                <div class="kernel-status-bar">
+                    <span class="kernel-chip"><span class="status-pulse"></span> SYSTEM: ONLINE</span>
+                    <span class="kernel-chip">RUNTIME: DARWIN_ARM64</span>
+                    <span class="kernel-chip">BRANCH: main [eeff5f6]</span>
+                </div>
+
                 <div class="hero-intro-label">HELLO WORLD, I'M</div>
 
                 <h1 class="hero-name-heading">ARJUN A</h1>
@@ -202,7 +209,7 @@
             </div>
         </section>
 
-        <!-- PROJECTS SECTION (BENTO GRID) -->
+        <!-- PROJECTS SECTION (BENTO GRID WITH CS ARCHITECTURAL METRICS) -->
         <section id="projects" class="section-block reveal">
             <div class="section-tag">FEATURED PROJECTS</div>
             <div class="section-heading-wrapper">
@@ -225,6 +232,10 @@
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <span>SentinelOps</span>
                     </h3>
+                    <div class="project-cs-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <span>ARCH: LangGraph DAG (3x Latency Reduction) • ChromaDB Vector RAG</span>
+                    </div>
                     <p class="project-desc">
                         Event-driven DevSecOps platform that autonomously analyzes GitHub Pull Requests, proactively blocking vulnerable code from reaching production. Features a parallel multi-agent workflow using LangGraph (3x latency reduction), a hallucination-resistant RAG pipeline with ChromaDB, dynamic Blast Radius dependency mapping for 7+ languages, and custom ARG_MAX batching for 8 SAST/SCA scanners.
                     </p>
@@ -250,6 +261,10 @@
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
                         <span>PayrollPro</span>
                     </h3>
+                    <div class="project-cs-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        <span>ARCH: Bulk CSV Dispatch Engine • Prisma Audit Logs</span>
+                    </div>
                     <p class="project-desc">
                         Full-stack web application streamlining monthly payroll with bulk CSV uploads and automated encrypted PDF payslip generation (`pdfkit` + `nodemailer`). Built with PostgreSQL and Prisma ORM for real-time dispatch audits, secured by custom JWT authentication.
                     </p>
@@ -275,6 +290,10 @@
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                         <span>CIMS</span>
                     </h3>
+                    <div class="project-cs-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        <span>ALG: Haversine Geo Routing • QR Handshake</span>
+                    </div>
                     <p class="project-desc">
                         Cross-platform disaster response platform unifying donation intake and warehouse logistics with Firebase Auth RBAC. Features geospatial routing using the Haversine formula for automatic warehouse assignment and QR-based delivery verification.
                     </p>
@@ -299,6 +318,10 @@
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                         <span>QuickDoc</span>
                     </h3>
+                    <div class="project-cs-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>PAY: Razorpay Gateway Webhooks • Multi-Role RBAC</span>
+                    </div>
                     <p class="project-desc">
                         Scalable multi-user healthcare platform for booking and managing medical appointments with custom dashboards for patients, doctors, and admins. Integrated Razorpay payment gateway for seamless online fee processing.
                     </p>
@@ -387,7 +410,7 @@
             </div>
         </section>
 
-        <!-- ACHIEVEMENTS SECTION -->
+        <!-- ACHIEVEMENTS SECTION (GIT LOG) -->
         <section id="achievements" class="section-block reveal">
             <div class="section-tag">CERTIFICATES & ACHIEVEMENTS</div>
             <div class="section-heading-wrapper">
