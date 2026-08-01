@@ -1642,3 +1642,18 @@ body.cursor-hover #cursor-dot {
         font-size: 11px;
     }
 }
+
+/* =============================================
+   MOBILE / TOUCH - DISABLE CUSTOM CURSOR
+   ============================================= */
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+    *, *::before, *::after {
+        cursor: auto !important;
+    }
+
+    #cursor-dot,
+    #cursor-ring {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}

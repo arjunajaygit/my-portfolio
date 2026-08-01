@@ -20,7 +20,7 @@ function switchIdeTab(tabName) {
                 <span class="code-key">education:</span><br>
                 &nbsp;&nbsp;- <span class="code-str">"B.Tech Information Technology @ CUSAT (CGPA: 8.95/10)"</span><br>
                 &nbsp;&nbsp;- <span class="code-str">"BS Data Science & Applications @ IIT Madras"</span><br>
-                <span class="code-key">focus:</span> <span class="code-arr">["Full-Stack Web & Mobile", "DevSecOps Automation", "Multi-Agent AI"]</span><br>
+                <span class="code-key">focus:</span> <span class="code-arr">["Full-Stack Web & Mobile", "DevSecOps", "Multi-Agent AI"]</span><br>
                 <span class="code-key">location:</span> <span class="code-str">"Kochi, Kerala, India"</span><br>
                 <span class="code-key">email:</span> <span class="code-str">"rjun.ajay@gmail.com"</span>
             `;
@@ -31,10 +31,10 @@ function switchIdeTab(tabName) {
         if (content) {
             content.innerHTML = `
                 <span class="code-key">export const</span> <span class="code-str">developerStack</span> = {<br>
-                &nbsp;&nbsp;<span class="code-key">languages:</span> [<span class="code-str">"C++"</span>, <span class="code-str">"TypeScript"</span>, <span class="code-str">"Python"</span>, <span class="code-str">"Dart"</span>, <span class="code-str">"SQL"</span>],<br>
-                &nbsp;&nbsp;<span class="code-key">frameworks:</span> [<span class="code-str">"Next.js"</span>, <span class="code-str">"Flutter"</span>, <span class="code-str">"FastAPI"</span>, <span class="code-str">"LangGraph"</span>],<br>
-                &nbsp;&nbsp;<span class="code-key">databases:</span> [<span class="code-str">"PostgreSQL"</span>, <span class="code-str">"MongoDB"</span>, <span class="code-str">"ChromaDB"</span>],<br>
-                &nbsp;&nbsp;<span class="code-key">tooling:</span> [<span class="code-str">"Docker"</span>, <span class="code-str">"Firebase"</span>, <span class="code-str">"Prisma"</span>, <span class="code-str">"Semgrep"</span>]<br>
+                &nbsp;&nbsp;<span class="code-key">languages:</span> [<span class="code-str">"Python"</span>, <span class="code-str">"C/C++"</span>, <span class="code-str">"JavaScript"</span>, <span class="code-str">"SQL"</span>],<br>
+                &nbsp;&nbsp;<span class="code-key">frameworksTools:</span> [<span class="code-str">"React"</span>, <span class="code-str">"Node.js"</span>, <span class="code-str">"Express.js"</span>, <span class="code-str">"Flutter"</span>, <span class="code-str">"FastAPI"</span>, <span class="code-str">"Git/GitHub"</span>, <span class="code-str">"Docker"</span>, <span class="code-str">"Firebase"</span>],<br>
+                &nbsp;&nbsp;<span class="code-key">databases:</span> [<span class="code-str">"PostgreSQL"</span>, <span class="code-str">"MySQL"</span>, <span class="code-str">"MongoDB"</span>],<br>
+                &nbsp;&nbsp;<span class="code-key">coreConcepts:</span> [<span class="code-str">"DSA"</span>, <span class="code-str">"OOP"</span>, <span class="code-str">"DBMS"</span>, <span class="code-str">"Operating Systems"</span>, <span class="code-str">"Computer Networks"</span>]<br>
                 };
             `;
         }
@@ -64,14 +64,16 @@ function closeCmdModal() {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT
+    // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT (Desktop only - disabled on mobile/touch)
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     const spotlight = document.getElementById('bg-spotlight');
+    const isMobileOrTouch = window.matchMedia('(max-width: 768px), (hover: none), (pointer: coarse)').matches;
     let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
 
     function renderCursorRing() {
+        if (isMobileOrTouch) return;
         const dx = mouseX - ringX;
         const dy = mouseY - ringY;
         
@@ -88,13 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(renderCursorRing);
         }
     }
-    renderCursorRing();
+    if (!isMobileOrTouch) {
+        renderCursorRing();
+    }
 
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        if (dot) {
+        if (!isMobileOrTouch && dot) {
             dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         }
 
@@ -104,22 +108,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Wake up the ring animation if it was idle
-        requestAnimationFrame(renderCursorRing);
+        if (!isMobileOrTouch) {
+            requestAnimationFrame(renderCursorRing);
+        }
     });
 
-    // Hover elements
-    const hoverTargets = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .tech-group, .ide-container, .stat-card');
-    hoverTargets.forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
+    // Hover elements (Desktop only)
+    if (!isMobileOrTouch) {
+        const hoverTargets = document.querySelectorAll('a, button, input, textarea, .bento-card, .timeline-card, .tech-group, .ide-container, .stat-card');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+    }
 
     // 2. DYNAMIC MORPHING MATRIX DECODER TITLE ROTATOR
     const roleTextMain = document.getElementById('role-text-main');
     const rolesList = [
         "SOFTWARE ENGINEER",
         "FULL-STACK DEVELOPER",
-        "DEVSECOPS AUTOMATION",
+        "DEVSECOPS",
         "AGENTIC AI SYSTEMS"
     ];
     const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>/~+";

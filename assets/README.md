@@ -11,7 +11,7 @@
 
 <br/>
 
-I build systems at the intersection of **full-stack engineering**, **DevSecOps automation**, and **applied machine learning**. I enjoy shipping software end-to-end, from database schema design to deployed UI, and I'm currently focused on multi-agent AI architectures and security automation.
+I build systems at the intersection of **full-stack engineering**, **DevSecOps**, and **applied machine learning**. I enjoy shipping software end-to-end, from database schema design to deployed UI, and I'm currently focused on multi-agent AI architectures and security automation.
 
 <br/>
 
@@ -23,8 +23,8 @@ name:      Arjun A
 role:      Full-Stack Engineer / Applied ML & Data Science
 education: B.Tech IT @ CUSAT  +  BS Data Science & Applications @ IIT Madras
 currently: Building SentinelOps — an autonomous AI code-review / DevSecOps engine
-focus:     ["Multi-agent AI Architectures", "DevSecOps automation", "Full-stack web/mobile"]
-stack:     Python · JavaScript · TypeScript · React · Flutter · FastAPI · Node.js · LangGraph · Next.js
+focus:     ["Multi-agent AI Architectures", "DevSecOps", "Full-stack web/mobile"]
+stack:     Python · C/C++ · JavaScript · SQL · React · Node.js · Express.js · Flutter · FastAPI · Git · Docker · Firebase
 location:  Kochi, Kerala, IN
 contact:   rjun.ajay@gmail.com
 ```
