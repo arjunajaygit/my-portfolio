@@ -11,7 +11,7 @@
 
 <br/>
 
-I build systems at the intersection of **full-stack engineering**, **DevSecOps**, and **applied machine learning**. I enjoy shipping software end-to-end, from database schema design to deployed UI, and I'm currently focused on multi-agent AI architectures and security automation.
+I build systems at the intersection of **full-stack engineering**, **DevSecOps**, and **applied machine learning**. I enjoy shipping software end-to-end, from database schema design to deployed UI, and I'm currently focused on multi-agent AI architectures and DevSecOps.
 
 <br/>
 
