@@ -1,5 +1,6 @@
 /* =============================================
    PORTFOLIO INTERACTION & 3D CANVAS MATRIX ANIMATION
+   Phase 1 Performance-Optimized Version
    ============================================= */
 
 // Global function to switch IDE Tabs
@@ -63,29 +64,40 @@ function closeCmdModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT (Desktop only - disabled on mobile/touch)
+
+    // =========================================
+    // GLOBAL STATE — Centralized animation control
+    // =========================================
+    const isMobileOrTouch = window.matchMedia('(max-width: 768px), (hover: none), (pointer: coarse)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let isTabVisible = !document.hidden;
+
+    // Pause ALL animations when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        isTabVisible = !document.hidden;
+    });
+
+    // =========================================
+    // 1. CUSTOM CURSOR & BACKGROUND CURSOR SPOTLIGHT (Desktop only)
+    // =========================================
     const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     const spotlight = document.getElementById('bg-spotlight');
-    const isMobileOrTouch = window.matchMedia('(max-width: 768px), (hover: none), (pointer: coarse)').matches;
     let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
 
     function renderCursorRing() {
-        if (isMobileOrTouch) return;
+        if (isMobileOrTouch || !isTabVisible) return;
         const dx = mouseX - ringX;
         const dy = mouseY - ringY;
-        
+
         ringX += dx * 0.15;
         ringY += dy * 0.15;
-        
+
         if (ring) {
-            // translate3d forces GPU hardware acceleration
             ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
         }
-        
-        // Pause the animation loop if the ring has caught up to the mouse to save battery
+
         if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
             requestAnimationFrame(renderCursorRing);
         }
@@ -97,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
+
         if (!isMobileOrTouch && dot) {
             dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         }
@@ -106,12 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
             spotlight.style.setProperty('--spot-x', `${mouseX}px`);
             spotlight.style.setProperty('--spot-y', `${mouseY}px`);
         }
-        
-        // Wake up the ring animation if it was idle
+
         if (!isMobileOrTouch) {
             requestAnimationFrame(renderCursorRing);
         }
-    });
+    }, { passive: true });
 
     // Hover elements (Desktop only)
     if (!isMobileOrTouch) {
@@ -122,7 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // =========================================
     // 2. DYNAMIC MORPHING MATRIX DECODER TITLE ROTATOR
+    //    - Uses setTimeout chain instead of setInterval (prevents overlap)
+    //    - Pauses when hero is offscreen or tab is hidden
+    //    - Disabled entirely for prefers-reduced-motion
+    // =========================================
     const roleTextMain = document.getElementById('role-text-main');
     const rolesList = [
         "SOFTWARE ENGINEER",
@@ -132,13 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>/~+";
     let roleIndex = 0;
+    let isHeroVisible = true;
+    let activeScrambleInterval = null;
 
     function scrambleText(targetText, callback) {
         if (!roleTextMain) return;
         let iteration = 0;
         const maxIterations = targetText.length * 2;
-        
-        const interval = setInterval(() => {
+
+        // Clear any previous scramble interval to prevent overlap
+        if (activeScrambleInterval) clearInterval(activeScrambleInterval);
+
+        activeScrambleInterval = setInterval(() => {
             roleTextMain.innerText = targetText
                 .split("")
                 .map((char, index) => {
@@ -151,7 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 .join("");
 
             if (iteration >= maxIterations) {
-                clearInterval(interval);
+                clearInterval(activeScrambleInterval);
+                activeScrambleInterval = null;
                 roleTextMain.innerText = targetText;
                 if (callback) callback();
             }
@@ -162,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function rotateRoleTitle() {
         if (!roleTextMain) return;
 
-        // Slide Out current
         roleTextMain.classList.add('swap-out');
 
         setTimeout(() => {
@@ -172,35 +193,66 @@ document.addEventListener('DOMContentLoaded', () => {
             roleTextMain.classList.remove('swap-out');
             roleTextMain.classList.add('swap-in', 'decoding');
 
-            // Trigger Scramble Decoding
             scrambleText(nextRole, () => {
                 roleTextMain.classList.remove('swap-in', 'decoding');
             });
         }, 350);
     }
 
-    // Rotate title every 3.5 seconds
-    setInterval(rotateRoleTitle, 3500);
+    // Schedule role rotation via setTimeout chain (not setInterval — avoids overlap)
+    function scheduleRoleRotation() {
+        setTimeout(() => {
+            // Only rotate if hero is visible AND tab is visible AND motion is allowed
+            if (isHeroVisible && isTabVisible && !prefersReducedMotion) {
+                rotateRoleTitle();
+            }
+            scheduleRoleRotation(); // re-schedule regardless, but rotation will no-op when hidden
+        }, 3500);
+    }
 
+    if (!prefersReducedMotion) {
+        scheduleRoleRotation();
+    }
+
+    // Observe hero visibility for the role rotator
+    const heroSection = document.getElementById('home');
+    if (heroSection) {
+        const heroObserver = new IntersectionObserver((entries) => {
+            isHeroVisible = entries[0].isIntersecting;
+        }, { threshold: 0.1 });
+        heroObserver.observe(heroSection);
+    }
+
+    // =========================================
     // 3. SCROLL PROGRESS BAR & PARALLAX HERO SCROLL EFFECT
+    //    - Progress bar uses transform:scaleX (compositor-only, no layout reflow)
+    //    - Parallax uses compositor-only transform + opacity
+    //    - Both scroll listeners are { passive: true }
+    // =========================================
     const progressBar = document.getElementById('scroll-progress');
     const heroParallax = document.getElementById('hero-parallax-target');
 
     window.addEventListener('scroll', () => {
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (window.scrollY / totalHeight) * 100;
+        if (totalHeight <= 0) return;
+        const progress = window.scrollY / totalHeight;
+
         if (progressBar) {
-            progressBar.style.width = `${progress}%`;
+            progressBar.style.transform = `scaleX(${progress})`;
         }
 
-        // Parallax hero movement
-        if (heroParallax && window.scrollY < 800) {
-            heroParallax.style.transform = `translateY(${window.scrollY * 0.2}px)`;
-            heroParallax.style.opacity = `${1 - (window.scrollY / 750)}`;
+        // Parallax hero movement (compositor-only)
+        if (heroParallax && window.scrollY < 800 && !prefersReducedMotion) {
+            const ty = window.scrollY * 0.2;
+            const op = Math.max(0, 1 - (window.scrollY / 750));
+            heroParallax.style.transform = `translateY(${ty}px)`;
+            heroParallax.style.opacity = op;
         }
-    });
+    }, { passive: true });
 
+    // =========================================
     // 4. COMMAND PALETTE MODAL CONTROLS (CMD + K) & REAL-TIME SEARCH FILTER
+    // =========================================
     const cmdTrigger = document.getElementById('cmd-trigger');
     const cmdModal = document.getElementById('cmd-modal');
     const cmdInput = document.getElementById('cmd-search-input');
@@ -323,7 +375,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeCmdModal();
     });
 
-    // 5. CONTACT FORM DIRECT EMAIL DISPATCH (rjun.ajay@gmail.com)
+    // =========================================
+    // 5. CONTACT FORM DIRECT EMAIL DISPATCH
+    // =========================================
     const contactForm = document.getElementById('contact-form');
     const statusMsg = document.getElementById('contact-status-msg');
     const submitBtn = document.getElementById('contact-submit-btn');
@@ -331,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const name = document.getElementById('form-name').value;
             const email = document.getElementById('form-email').value;
             const message = document.getElementById('form-message').value;
@@ -366,7 +420,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Server response error');
                 }
             } catch (err) {
-                // Fallback to mailto protocol directly
                 const mailtoUrl = `mailto:rjun.ajay@gmail.com?subject=${encodeURIComponent('Portfolio Contact from ' + name)}&body=${encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message)}`;
                 window.location.href = mailtoUrl;
 
@@ -383,7 +436,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // =========================================
     // 6. INTERSECTION OBSERVER FOR MULTI-TYPE SCROLL REVEALS
+    // =========================================
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -394,7 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal-up, .reveal-left, .reveal-scale').forEach(el => revealObserver.observe(el));
 
-    // Active Navigation Highlight on Scroll
+    // =========================================
+    // Active Navigation Highlight on Scroll (throttled via rAF)
+    // =========================================
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
 
@@ -405,8 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
             top: section.offsetTop - 220
         }));
     }
-    
-    // Calculate once on load and recalculate on resize
+
     calculateSectionOffsets();
     window.addEventListener('resize', calculateSectionOffsets);
 
@@ -416,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.requestAnimationFrame(() => {
                 let current = '';
                 const scrollY = window.scrollY;
-                
+
                 sectionOffsets.forEach(section => {
                     if (scrollY >= section.top) {
                         current = section.id;
@@ -434,15 +490,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             scrollTicking = true;
         }
-    });
+    }, { passive: true });
 
+    // =========================================
     // 7. FULLSCREEN INTERACTIVE 3D CONSTELLATION & DIGITAL WAVE CANVAS
+    //    Performance optimizations:
+    //    - Pauses when canvas is offscreen (IntersectionObserver)
+    //    - Pauses when tab is hidden (visibilitychange via isTabVisible)
+    //    - Caps to ~30fps on mobile via timestamp throttling
+    //    - Disabled entirely for prefers-reduced-motion
+    //    - Uses squared distance comparison to avoid Math.sqrt when possible
+    // =========================================
     const canvas = document.getElementById('bg-canvas');
-    if (canvas) {
+    if (canvas && !prefersReducedMotion) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
         let binaryStreams = [];
+        let isCanvasVisible = true;
+        let canvasAnimId = null;
+        let lastFrameTime = 0;
+
+        // 30fps on mobile, uncapped (60fps) on desktop
+        const frameDuration = isMobileOrTouch ? 33 : 0;
 
         function resizeCanvas() {
             width = canvas.width = window.innerWidth;
@@ -502,15 +572,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Adapt particle count based on screen size to save battery and GPU on mobile
-        const isMobile = window.innerWidth < 768;
-        const numParticles = isMobile ? 20 : 55;
-        const numBits = isMobile ? 15 : 35;
+        const numParticles = isMobileOrTouch ? 20 : 55;
+        const numBits = isMobileOrTouch ? 15 : 35;
 
         for (let i = 0; i < numParticles; i++) particles.push(new Particle());
         for (let i = 0; i < numBits; i++) binaryStreams.push(new BinaryBit());
 
-        function animateCanvas() {
+        function animateCanvas(timestamp) {
+            // Don't render if hidden
+            if (!isCanvasVisible || !isTabVisible) {
+                canvasAnimId = null;
+                return;
+            }
+
+            // Frame rate cap (mobile: ~30fps)
+            if (frameDuration > 0 && timestamp - lastFrameTime < frameDuration) {
+                canvasAnimId = requestAnimationFrame(animateCanvas);
+                return;
+            }
+            lastFrameTime = timestamp;
+
             ctx.clearRect(0, 0, width, height);
 
             binaryStreams.forEach(bit => {
@@ -528,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dy = p.y - p2.y;
                     const distSq = dx * dx + dy * dy;
 
-                    // 19600 is 140 * 140. Optimize by avoiding Math.sqrt if out of range.
+                    // 19600 = 140². Skip Math.sqrt when clearly out of range.
                     if (distSq < 19600) {
                         const dist = Math.sqrt(distSq);
                         ctx.beginPath();
@@ -541,9 +622,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            requestAnimationFrame(animateCanvas);
+            canvasAnimId = requestAnimationFrame(animateCanvas);
         }
 
-        animateCanvas();
+        // Start/stop canvas based on visibility
+        function startCanvas() {
+            if (!canvasAnimId) {
+                canvasAnimId = requestAnimationFrame(animateCanvas);
+            }
+        }
+
+        function stopCanvas() {
+            if (canvasAnimId) {
+                cancelAnimationFrame(canvasAnimId);
+                canvasAnimId = null;
+            }
+        }
+
+        // Observe canvas visibility
+        const canvasObserver = new IntersectionObserver((entries) => {
+            isCanvasVisible = entries[0].isIntersecting;
+            if (isCanvasVisible && isTabVisible) {
+                startCanvas();
+            } else {
+                stopCanvas();
+            }
+        }, { threshold: 0 });
+        canvasObserver.observe(canvas);
+
+        // Also respond to tab visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && isCanvasVisible) {
+                startCanvas();
+            } else {
+                stopCanvas();
+            }
+        });
+
+        // Initial start
+        startCanvas();
     }
 });

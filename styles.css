@@ -91,11 +91,13 @@ body {
     100% { background-position: 0 500px; }
 }
 
-/* 3. DYNAMIC AMBIENT AURORA GLOW ORBS */
+/* 3. DYNAMIC AMBIENT AURORA GLOW ORBS
+   NOTE: filter:blur(100px) REMOVED — it triggers a full-surface paint every frame
+   on the GPU and is the #1 source of device heating. The radial-gradient color stops
+   are widened to 85% to produce the same soft-glow effect natively. */
 .bg-glow-orb {
     position: fixed;
     border-radius: 50%;
-    filter: blur(100px);
     pointer-events: none;
     z-index: 0;
     opacity: 0.85;
@@ -105,27 +107,27 @@ body {
 .orb-1 {
     top: 2%;
     left: 10%;
-    width: 650px;
-    height: 650px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(34, 197, 94, 0.12) 50%, transparent 70%);
+    width: 750px;
+    height: 750px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(34, 197, 94, 0.08) 40%, transparent 85%);
     animation: floatOrb1 20s ease-in-out infinite alternate;
 }
 
 .orb-2 {
     top: 40%;
     right: 5%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.22) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 70%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.18) 0%, rgba(56, 189, 248, 0.08) 40%, transparent 85%);
     animation: floatOrb2 24s ease-in-out infinite alternate;
 }
 
 .orb-3 {
     bottom: 5%;
     left: 15%;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(34, 197, 94, 0.24) 0%, rgba(56, 189, 248, 0.1) 50%, transparent 70%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, rgba(56, 189, 248, 0.06) 40%, transparent 85%);
     animation: floatOrb3 22s ease-in-out infinite alternate;
 }
 
@@ -155,17 +157,19 @@ body {
     transition: background 0.05s linear;
 }
 
-/* TOP SCROLL PROGRESS BAR */
+/* TOP SCROLL PROGRESS BAR — uses transform:scaleX instead of width for compositor-only rendering */
 #scroll-progress {
     position: fixed;
     top: 0;
     left: 0;
     height: 3px;
-    width: 0%;
+    width: 100%;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), #ffffff, var(--code-green));
     z-index: 10002;
     box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-    transition: width 0.1s ease-out;
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
 }
 
 ::selection {
@@ -2078,6 +2082,58 @@ body.cursor-hover #cursor-dot {
 
     .page-container {
         padding-top: 80px;
+    }
+}
+
+/* =============================================
+   PREFERS-REDUCED-MOTION — Accessibility
+   Disables all animations for users who prefer reduced motion.
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .bg-glow-orb {
+        animation: none !important;
+    }
+
+    .perspective-grid-floor {
+        animation: none !important;
+    }
+
+    .reveal-up, .reveal-left, .reveal-scale {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .bento-card::after {
+        display: none;
+    }
+
+    .role-anim-text {
+        transition: none !important;
+    }
+
+    #bg-canvas {
+        display: none;
+    }
+
+    .bg-cursor-spotlight {
+        display: none;
+    }
+}
+
+/* =============================================
+   MOBILE — DISABLE GRID FLOOR ANIMATION
+   Saves GPU by stopping the infinite background-position animation.
+   ============================================= */
+@media (max-width: 768px) {
+    .perspective-grid-floor {
+        animation: none;
     }
 }
 
