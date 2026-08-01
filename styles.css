@@ -1438,6 +1438,32 @@ body.cursor-hover #cursor-dot {
 /* =============================================
    RESPONSIVE BREAKPOINTS
    ============================================= */
+
+/* --- TABLET / SMALL DESKTOP (≤ 1024px) --- */
+@media (max-width: 1024px) {
+    .section-hero {
+        min-height: auto;
+        margin-bottom: 120px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .section-block {
+        margin-bottom: 120px;
+    }
+
+    .bento-card.featured {
+        grid-column: span 1;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- TABLET PORTRAIT (≤ 900px) --- */
 @media (max-width: 900px) {
     .page-container {
         padding: 100px 20px 60px;
@@ -1461,12 +1487,12 @@ body.cursor-hover #cursor-dot {
         display: none;
     }
 
-    .bento-grid, .project-grid, .tech-grid, .contact-grid {
-        grid-template-columns: 1fr;
+    .nav-item {
+        padding: 8px 12px;
     }
 
-    .bento-card.featured {
-        grid-column: span 1;
+    .project-grid, .tech-grid, .contact-grid {
+        grid-template-columns: 1fr;
     }
 
     .git-entry {
@@ -1477,15 +1503,65 @@ body.cursor-hover #cursor-dot {
     .git-hash {
         min-width: auto;
     }
+
+    .git-log-container {
+        padding: 20px;
+    }
+
+    .contact-box {
+        padding: 28px;
+    }
+
+    .section-block {
+        margin-bottom: 100px;
+    }
+
+    .section-heading-wrapper {
+        margin-bottom: 32px;
+    }
+
+    .title-solid, .title-ghost {
+        font-size: clamp(32px, 5.5vw, 60px);
+    }
+
+    .timeline-card:hover {
+        transform: translateX(4px);
+    }
 }
 
+/* --- MOBILE LANDSCAPE / SMALL TABLET (≤ 768px) --- */
 @media (max-width: 768px) {
     .hero-name-heading {
         font-size: clamp(42px, 10vw, 64px);
     }
-    
+
     .dynamic-title-box {
         font-size: clamp(28px, 5vw, 42px);
+    }
+
+    .hero-role-stacked {
+        min-height: 50px;
+        margin-bottom: 24px;
+    }
+
+    .hero-meta-bar {
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .hero-location-badge {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .hero-stats-row {
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .hero-description {
+        font-size: 17px;
+        margin-bottom: 32px;
     }
 
     .topnav {
@@ -1495,14 +1571,24 @@ body.cursor-hover #cursor-dot {
         transform: translateX(-50%);
         right: auto;
         width: calc(100% - 40px);
+        max-width: 400px;
         justify-content: space-around;
-        padding: 12px 20px;
+        padding: 10px 16px;
         border-radius: 999px;
         background: rgba(20, 20, 20, 0.85);
         backdrop-filter: blur(20px);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         z-index: 1000;
         border: 1px solid var(--border);
+    }
+
+    .nav-item {
+        padding: 8px 10px;
+    }
+
+    .nav-item svg {
+        width: 18px;
+        height: 18px;
     }
 
     .cmd-k-pill {
@@ -1512,11 +1598,11 @@ body.cursor-hover #cursor-dot {
     .brand-corner-logo {
         padding: 8px 12px;
     }
-    
+
     .brand-name {
         display: none;
     }
-    
+
     .brand-status-dot {
         display: none;
     }
@@ -1524,122 +1610,441 @@ body.cursor-hover #cursor-dot {
     .timeline::before {
         left: 0;
     }
-    
+
     .timeline {
         padding-left: 20px;
     }
-    
+
     .timeline-dot {
         left: -20px;
     }
-    
+
     .timeline-card {
         padding: 24px;
     }
-    
+
     .ide-body {
         grid-template-columns: 1fr;
     }
-    
+
     .ide-gutter {
         display: none;
     }
-    
+
     .ide-content {
         padding: 0 16px;
+        font-size: 13.5px;
     }
-    
+
     .hero-ctas {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 12px;
     }
-    
+
     .stat-card {
-        min-width: 120px;
-        padding: 14px 18px;
+        min-width: 100px;
+        padding: 12px 16px;
     }
-    
-    .hero-stats-row {
+
+    .stat-val {
+        font-size: 26px;
+    }
+
+    .stat-lbl {
+        font-size: 10.5px;
+    }
+
+    /* Tech grid: 2 columns on tablet */
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
+    }
+
+    .tech-group {
+        padding: 20px;
+    }
+
+    .tech-pill {
+        font-size: 11.5px;
+        padding: 5px 10px;
+    }
+
+    /* Achievements */
+    .git-entry {
+        padding: 14px 0;
+    }
+
+    .git-msg-title {
+        font-size: 14px;
+    }
+
+    .git-msg-desc {
+        font-size: 13px;
+    }
+
+    /* Contact */
+    .form-input, .form-textarea {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    /* Section titles */
+    .title-solid, .title-ghost {
+        font-size: clamp(28px, 5vw, 52px);
+    }
+
+    /* Footer safe area for bottom nav */
+    .site-footer {
+        padding-bottom: 80px;
+    }
+
+    /* Section spacing */
+    .section-hero {
+        margin-bottom: 100px;
+        padding-bottom: 40px;
+    }
+
+    .section-block {
+        margin-bottom: 80px;
+    }
+
+    .page-container {
+        padding-bottom: 100px;
     }
 }
 
+/* --- MOBILE PORTRAIT (≤ 480px) --- */
 @media (max-width: 480px) {
     .page-container {
-        padding: 80px 16px 100px;
+        padding: 80px 16px 120px;
     }
 
     .hero-name-heading {
         font-size: clamp(36px, 12vw, 48px);
+        letter-spacing: -1.5px;
     }
 
     .dynamic-title-box {
-        font-size: clamp(24px, 6vw, 32px);
+        font-size: clamp(22px, 7vw, 32px);
+        letter-spacing: -1px;
     }
-    
+
+    .hero-role-stacked {
+        min-height: 40px;
+        margin-bottom: 20px;
+    }
+
     .hero-description {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+    .hero-intro-label {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+
+    .hero-meta-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .hero-location-badge {
+        font-size: 11px;
+        padding: 6px 10px;
+        width: 100%;
+    }
+
+    .hero-stats-row {
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .stat-card {
+        min-width: calc(50% - 8px);
+        flex: 1;
+        padding: 12px 14px;
+    }
+
+    .stat-val {
+        font-size: 24px;
+    }
+
+    .stat-lbl {
+        font-size: 10px;
     }
 
     .hero-ctas {
         flex-direction: column;
         width: 100%;
-        gap: 12px;
+        gap: 10px;
     }
-    
+
     .btn-primary, .btn-secondary {
         width: 100%;
         justify-content: center;
+        padding: 12px 24px;
+        font-size: 13px;
     }
-    
+
     .hero-ctas .btn-icon-only {
         display: none;
     }
 
+    /* Section titles */
+    .title-solid, .title-ghost {
+        font-size: clamp(24px, 7vw, 40px);
+        letter-spacing: -1px;
+    }
+
+    .section-tag {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    .section-heading-wrapper {
+        margin-bottom: 24px;
+    }
+
+    .section-block {
+        margin-bottom: 64px;
+    }
+
+    /* Timeline */
     .timeline-header {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .date-badge {
         margin-top: 8px;
-    }
-
-    .project-title {
-        font-size: 20px;
-    }
-    
-    .bento-card {
-        padding: 20px;
+        font-size: 11px;
     }
 
     .timeline-card {
-        padding: 20px;
+        padding: 18px;
     }
 
-    .cmd-modal-box {
-        width: 95%;
+    .role-title {
+        font-size: 16px;
+    }
+
+    .company-name {
+        font-size: 12px;
+    }
+
+    .timeline-bullets li {
+        font-size: 13.5px;
+    }
+
+    /* Projects */
+    .project-title {
+        font-size: 18px;
+    }
+
+    .project-desc {
+        font-size: 13.5px;
+    }
+
+    .bento-card {
         padding: 20px;
+        border-radius: 16px;
     }
-    
-    .stat-card {
-        min-width: 100%;
+
+    .project-icon-link {
+        width: 34px;
+        height: 34px;
     }
-    
+
+    .tech-tag {
+        font-size: 10.5px;
+        padding: 3px 8px;
+    }
+
+    /* Tech stack: single column on small mobile */
+    .tech-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .tech-group {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .tech-group-title {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+
+    .tech-pill {
+        font-size: 11px;
+        padding: 4px 9px;
+        border-radius: 6px;
+    }
+
+    /* Achievements */
+    .git-log-container {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .git-entry {
+        padding: 12px 0;
+        gap: 4px;
+    }
+
+    .git-hash {
+        font-size: 12px;
+    }
+
+    .git-hash svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .git-msg-title {
+        font-size: 13.5px;
+    }
+
+    .git-msg-desc {
+        font-size: 12.5px;
+    }
+
+    /* IDE */
+    .ide-container {
+        border-radius: 14px;
+    }
+
+    .ide-header {
+        padding: 8px 14px;
+    }
+
+    .ide-dot {
+        width: 10px;
+        height: 10px;
+    }
+
     .ide-body {
-        font-size: 13px;
-        min-height: 200px;
-        padding: 16px 0;
+        font-size: 12.5px;
+        min-height: 180px;
+        padding: 14px 0;
+        line-height: 1.75;
     }
-    
+
     .ide-content {
         padding: 0 12px;
     }
-    
+
     .ide-tab {
         padding: 4px 10px;
         font-size: 11px;
+    }
+
+    /* Contact */
+    .contact-box {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .contact-form {
+        gap: 18px;
+    }
+
+    .form-group label {
+        font-size: 11px;
+    }
+
+    .form-input, .form-textarea {
+        padding: 11px 12px;
+        font-size: 13.5px;
+        border-radius: 8px;
+    }
+
+    .form-textarea {
+        min-height: 100px;
+    }
+
+    /* Command palette */
+    .cmd-modal-box {
+        width: 95%;
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .cmd-modal-overlay {
+        padding-top: 10vh;
+    }
+
+    .cmd-option-item {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .cmd-shortcut {
+        display: none;
+    }
+
+    /* Footer */
+    .site-footer {
+        font-size: 11px;
+        padding: 30px 0 90px;
+    }
+
+    /* Topnav */
+    .topnav {
+        bottom: 12px;
+        width: calc(100% - 32px);
+        padding: 8px 12px;
+    }
+
+    .nav-item {
+        padding: 8px;
+    }
+
+    .nav-item svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+/* --- VERY SMALL MOBILE (≤ 360px) --- */
+@media (max-width: 360px) {
+    .page-container {
+        padding: 70px 12px 120px;
+    }
+
+    .hero-name-heading {
+        font-size: clamp(30px, 12vw, 40px);
+    }
+
+    .dynamic-title-box {
+        font-size: clamp(20px, 7vw, 28px);
+    }
+
+    .title-solid, .title-ghost {
+        font-size: clamp(22px, 8vw, 36px);
+    }
+
+    .stat-card {
+        min-width: 100%;
+    }
+
+    .ide-body {
+        font-size: 11.5px;
+        line-height: 1.65;
+    }
+
+    .tech-pill {
+        font-size: 10.5px;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 11px 20px;
+        font-size: 12px;
     }
 }
 
@@ -1657,3 +2062,22 @@ body.cursor-hover #cursor-dot {
         visibility: hidden !important;
     }
 }
+
+/* =============================================
+   LANDSCAPE MOBILE FIX
+   ============================================= */
+@media (max-height: 500px) and (orientation: landscape) {
+    .section-hero {
+        min-height: auto;
+        padding-bottom: 20px;
+    }
+
+    .hero-role-stacked {
+        min-height: 36px;
+    }
+
+    .page-container {
+        padding-top: 80px;
+    }
+}
+
