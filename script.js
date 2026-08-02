@@ -57,6 +57,15 @@ function switchIdeTab(tabName) {
     }
 }
 
+// Force browser to scroll to top (initial hero screen) on page refresh
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+});
+
 // Global Command Modal controls
 function closeCmdModal() {
     const modal = document.getElementById('cmd-modal');
@@ -64,6 +73,12 @@ function closeCmdModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Always land on initial screen (top of page) on load/refresh
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname);
+    }
 
     // =========================================
     // GLOBAL STATE — Centralized animation control
