@@ -3,23 +3,16 @@
    Phase 1 Performance-Optimized Version
    ============================================= */
 
-// Global function to switch IDE Tabs with ARIA accessibility
+// Global function to switch IDE Tabs
 function switchIdeTab(tabName) {
     const gutter = document.getElementById('ide-gutter');
     const content = document.getElementById('ide-content');
     const tabs = document.querySelectorAll('.ide-tab');
 
-    tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-    });
+    tabs.forEach(t => t.classList.remove('active'));
 
     if (tabName === 'profile') {
-        if (tabs[0]) {
-            tabs[0].classList.add('active');
-            tabs[0].setAttribute('aria-selected', 'true');
-        }
-        if (content) content.setAttribute('aria-labelledby', 'tab-profile');
+        if (tabs[0]) tabs[0].classList.add('active');
         if (gutter) gutter.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9';
         if (content) {
             content.innerHTML = `
@@ -34,11 +27,7 @@ function switchIdeTab(tabName) {
             `;
         }
     } else if (tabName === 'stack') {
-        if (tabs[1]) {
-            tabs[1].classList.add('active');
-            tabs[1].setAttribute('aria-selected', 'true');
-        }
-        if (content) content.setAttribute('aria-labelledby', 'tab-stack');
+        if (tabs[1]) tabs[1].classList.add('active');
         if (gutter) gutter.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7';
         if (content) {
             content.innerHTML = `
@@ -51,11 +40,7 @@ function switchIdeTab(tabName) {
             `;
         }
     } else if (tabName === 'education') {
-        if (tabs[2]) {
-            tabs[2].classList.add('active');
-            tabs[2].setAttribute('aria-selected', 'true');
-        }
-        if (content) content.setAttribute('aria-labelledby', 'tab-education');
+        if (tabs[2]) tabs[2].classList.add('active');
         if (gutter) gutter.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8';
         if (content) {
             content.innerHTML = `
@@ -691,187 +676,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initial start
         startCanvas();
-    }
-
-    // =========================================
-    // 8. THREE.JS OBSIDIAN TERMINAL CYAN HERO PARTICLE SCENE
-    //    - Direction A (Obsidian Terminal): Hero-only 3D interaction
-    //    - Cyan particle field (#38bdf8) reacting to mouse & touch
-    //    - Pauses when hero is offscreen via IntersectionObserver
-    //    - Pixel ratio capped to Math.min(window.devicePixelRatio, 2)
-    //    - Debounced resize handler
-    //    - Respects prefers-reduced-motion
-    // =========================================
-    function initHero3DScene() {
-        const heroCanvas = document.getElementById('hero-3d-canvas');
-        if (!heroCanvas || typeof THREE === 'undefined') return;
-
-        const container = heroCanvas.parentElement;
-        if (!container) return;
-
-        let width = container.clientWidth || window.innerWidth;
-        let height = container.clientHeight || 500;
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-        camera.position.z = 25;
-
-        const renderer = new THREE.WebGLRenderer({
-            canvas: heroCanvas,
-            alpha: true,
-            antialias: true,
-            powerPreference: "high-performance"
-        });
-        renderer.setSize(width, height);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Create Cyan Particle System (#38bdf8)
-        const particleCount = isMobileOrTouch ? 35 : 85;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const originalPositions = new Float32Array(particleCount * 3);
-        const velocities = new Float32Array(particleCount * 3);
-
-        for (let i = 0; i < particleCount; i++) {
-            const x = (Math.random() - 0.5) * 40;
-            const y = (Math.random() - 0.5) * 25;
-            const z = (Math.random() - 0.5) * 15;
-
-            positions[i * 3] = x;
-            positions[i * 3 + 1] = y;
-            positions[i * 3 + 2] = z;
-
-            originalPositions[i * 3] = x;
-            originalPositions[i * 3 + 1] = y;
-            originalPositions[i * 3 + 2] = z;
-
-            velocities[i * 3] = (Math.random() - 0.5) * 0.02;
-            velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.02;
-            velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
-        }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        // Particle material with Cyan accent (#38bdf8)
-        const material = new THREE.PointsMaterial({
-            color: 0x38bdf8,
-            size: isMobileOrTouch ? 0.35 : 0.45,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particleSystem = new THREE.Points(geometry, material);
-        scene.add(particleSystem);
-
-        // Pointer tracking
-        let mouseX = 0, mouseY = 0;
-        let targetMouseX = 0, targetMouseY = 0;
-
-        function onPointerMove(e) {
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            targetMouseX = (clientX / window.innerWidth - 0.5) * 2;
-            targetMouseY = -(clientY / window.innerHeight - 0.5) * 2;
-        }
-
-        window.addEventListener('pointermove', onPointerMove, { passive: true });
-        window.addEventListener('touchmove', onPointerMove, { passive: true });
-
-        // Responsive Resize with debounce
-        let resizeTimer;
-        function onResize() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                const newWidth = container.clientWidth || window.innerWidth;
-                const newHeight = container.clientHeight || 500;
-                camera.aspect = newWidth / newHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(newWidth, newHeight);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            }, 100);
-        }
-
-        window.addEventListener('resize', onResize);
-
-        // Animation Loop & Performance Controls
-        let animId = null;
-        let isHero3DVisible = true;
-
-        function animate3D() {
-            if (!isHero3DVisible || !isTabVisible) {
-                animId = null;
-                return;
-            }
-
-            if (prefersReducedMotion) {
-                renderer.render(scene, camera);
-                animId = null;
-                return;
-            }
-
-            // Smooth mouse interpolation
-            mouseX += (targetMouseX - mouseX) * 0.05;
-            mouseY += (targetMouseY - mouseY) * 0.05;
-
-            particleSystem.rotation.y = mouseX * 0.2;
-            particleSystem.rotation.x = -mouseY * 0.2;
-
-            const posArr = geometry.attributes.position.array;
-            for (let i = 0; i < particleCount; i++) {
-                const i3 = i * 3;
-                posArr[i3] += velocities[i3];
-                posArr[i3 + 1] += velocities[i3 + 1];
-
-                // Boundary bounce
-                if (Math.abs(posArr[i3] - originalPositions[i3]) > 3) velocities[i3] *= -1;
-                if (Math.abs(posArr[i3 + 1] - originalPositions[i3 + 1]) > 3) velocities[i3 + 1] *= -1;
-            }
-            geometry.attributes.position.needsUpdate = true;
-
-            renderer.render(scene, camera);
-            animId = requestAnimationFrame(animate3D);
-        }
-
-        function start3D() {
-            if (!animId) animId = requestAnimationFrame(animate3D);
-        }
-
-        function stop3D() {
-            if (animId) {
-                cancelAnimationFrame(animId);
-                animId = null;
-            }
-        }
-
-        // IntersectionObserver pause/resume when hero is offscreen
-        const heroSection = document.getElementById('home');
-        if (heroSection) {
-            const heroObserver = new IntersectionObserver((entries) => {
-                isHero3DVisible = entries[0].isIntersecting;
-                if (isHero3DVisible && isTabVisible) {
-                    start3D();
-                } else {
-                    stop3D();
-                }
-            }, { threshold: 0.05 });
-            heroObserver.observe(heroSection);
-        }
-
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden && isHero3DVisible) {
-                start3D();
-            } else {
-                stop3D();
-            }
-        });
-
-        start3D();
-    }
-
-    if (document.readyState === 'complete') {
-        initHero3DScene();
-    } else {
-        window.addEventListener('load', initHero3DScene);
     }
 });
