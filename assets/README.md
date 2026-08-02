@@ -142,6 +142,21 @@ Multi-tenant healthcare appointment platform with dedicated Patient / Doctor / A
 
 <br/>
 
+## `> cat threejs_config.md`
+
+```markdown
+### Three.js Hero Particle Scene Configuration
+Located in `script.js` under `initHero3DScene()`:
+
+- **Particle Color**: `color: 0x38bdf8` (Cyan accent). Change hex value to customize.
+- **Particle Count**: `isMobileOrTouch ? 35 : 85`. Adjust for lower/higher particle density.
+- **Camera Z Distance**: `camera.position.z = 25`. Increase to move camera further away.
+- **Pointer Rotation Sensitivity**: `particleSystem.rotation.y = mouseX * 0.2`. Adjust multiplier for stronger/subtle mouse sway.
+- **Performance**: Pauses automatically when hero is offscreen (via `IntersectionObserver`) and respects `prefers-reduced-motion`.
+```
+
+<br/>
+
 ## `> exit 0`
 
 <pre>
