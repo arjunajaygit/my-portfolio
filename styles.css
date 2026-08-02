@@ -537,6 +537,12 @@ body.cursor-hover #cursor-dot {
     z-index: 10;
 }
 
+section,
+.section-block,
+.section-hero {
+    scroll-margin-top: 100px;
+}
+
 .section-block {
     margin-bottom: 160px;
 }
@@ -1516,6 +1522,12 @@ body.cursor-hover #cursor-dot {
         padding: 28px;
     }
 
+    section,
+    .section-block,
+    .section-hero {
+        scroll-margin-top: 70px;
+    }
+
     .section-block {
         margin-bottom: 100px;
     }
@@ -1722,6 +1734,12 @@ body.cursor-hover #cursor-dot {
 @media (max-width: 480px) {
     .page-container {
         padding: 80px 16px 120px;
+    }
+
+    section,
+    .section-block,
+    .section-hero {
+        scroll-margin-top: 50px;
     }
 
     .hero-name-heading {
