@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateSectionOffsets() {
         sectionOffsets = Array.from(sections).map(section => ({
             id: section.getAttribute('id'),
-            top: section.offsetTop - 140
+            top: section.offsetTop - 180
         }));
     }
 

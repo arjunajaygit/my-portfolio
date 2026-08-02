@@ -540,7 +540,7 @@ body.cursor-hover #cursor-dot {
 section,
 .section-block,
 .section-hero {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 140px;
 }
 
 .section-block {
@@ -1525,7 +1525,7 @@ section,
     section,
     .section-block,
     .section-hero {
-        scroll-margin-top: 70px;
+        scroll-margin-top: 100px;
     }
 
     .section-block {
@@ -1739,7 +1739,7 @@ section,
     section,
     .section-block,
     .section-hero {
-        scroll-margin-top: 50px;
+        scroll-margin-top: 80px;
     }
 
     .hero-name-heading {
