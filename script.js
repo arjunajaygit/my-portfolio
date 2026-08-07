@@ -19,7 +19,7 @@ function switchIdeTab(tabName) {
                 <span class="code-key">name:</span> <span class="code-str">"Arjun A"</span><br>
                 <span class="code-key">title:</span> <span class="code-str">"Software Engineer"</span><br>
                 <span class="code-key">education:</span><br>
-                &nbsp;&nbsp;- <span class="code-str">"B.Tech Information Technology @ CUSAT (CGPA: 8.95/10)"</span><br>
+                &nbsp;&nbsp;- <span class="code-str">"B.Tech Information Technology @ CUSAT (CGPA: 9.01/10)"</span><br>
                 &nbsp;&nbsp;- <span class="code-str">"BS Data Science & Applications @ IIT Madras"</span><br>
                 <span class="code-key">focus:</span> <span class="code-arr">["Full-Stack Web & Mobile", "DevSecOps", "Multi-Agent AI"]</span><br>
                 <span class="code-key">location:</span> <span class="code-str">"Kochi, Kerala, India"</span><br>
@@ -48,7 +48,7 @@ function switchIdeTab(tabName) {
                 &nbsp;&nbsp;<span class="code-key">"btech"</span>: {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"degree"</span>: <span class="code-str">"B.Tech Information Technology"</span>,<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"institution"</span>: <span class="code-str">"Cochin University of Science and Technology (CUSAT)"</span>,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"cgpa"</span>: <span class="code-str">"8.95 / 10"</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-key">"cgpa"</span>: <span class="code-str">"9.01 / 10"</span><br>
                 &nbsp;&nbsp;},<br>
                 &nbsp;&nbsp;<span class="code-key">"bs"</span>: { <span class="code-key">"degree"</span>: <span class="code-str">"BS Data Science"</span>, <span class="code-key">"institution"</span>: <span class="code-str">"IIT Madras"</span> }<br>
                 }
